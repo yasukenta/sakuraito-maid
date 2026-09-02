@@ -274,6 +274,104 @@
   .more a:hover{ background:var(--sakura); color:var(--hakua); border-color:var(--sakura); }
   .lang-en .more a{ letter-spacing:.06em; }
 
+  /* ---------- 登場人物紹介 ---------- */
+  .cast-page{ padding-top:12vh; }
+  .cast-head{ text-align:center; margin-bottom:5rem; }
+  .cast-label{
+    display:inline-block; font-family:var(--sans); font-size:.66rem;
+    letter-spacing:.4em; text-indent:.4em; color:var(--sakura);
+    border:1px solid var(--sakura-pale); border-radius:999px;
+    padding:.42rem 1.1rem .38rem; margin-bottom:1.6rem;
+  }
+  .lang-en .cast-label{ text-transform:uppercase; }
+  .cast-head h2{
+    font-size:clamp(1.25rem,3.6vw,1.7rem); font-weight:600;
+    letter-spacing:.12em; text-indent:.12em; line-height:1.8;
+  }
+  .lang-en .cast-head h2{ letter-spacing:.03em; text-indent:0; }
+
+  .cast-list{ display:flex; flex-direction:column; gap:2.6rem; }
+  .cast-card{
+    background:var(--hakua); border:1px solid var(--line);
+    border-radius:16px; padding:2rem 1.9rem;
+  }
+  .cast-role{
+    font-family:var(--sans); font-size:.62rem; letter-spacing:.24em;
+    color:var(--sakura); margin-bottom:.9rem;
+  }
+  .lang-en .cast-role{ text-transform:uppercase; letter-spacing:.18em; }
+  .cast-card h3{
+    font-size:1.22rem; font-weight:600; letter-spacing:.1em; line-height:1.6;
+  }
+  .lang-en .cast-card h3{ letter-spacing:.02em; }
+  .cast-yomi{
+    display:block; font-family:var(--sans); font-size:.66rem;
+    letter-spacing:.16em; color:var(--sumi-soft); margin-top:.5rem; opacity:.85;
+  }
+  .cast-meta{
+    font-family:var(--sans); font-size:.72rem; letter-spacing:.06em;
+    color:var(--sumi-soft); margin:1rem 0 1.2rem;
+    padding-bottom:1.1rem; border-bottom:1px solid var(--washi-2);
+    text-indent:0; text-align:left;
+  }
+  .cast-desc{
+    font-size:.95rem; line-height:2.0; margin-bottom:1.2rem;
+    text-indent:0; text-align:justify;
+  }
+  .lang-en .cast-desc{ font-size:1.02rem; line-height:1.85; text-align:left; }
+  .cast-quote{
+    font-size:.92rem; line-height:1.95; color:var(--sakura-deep, #c76d8b);
+    border-left:2px solid var(--sakura-pale); padding-left:1.1rem;
+    margin:0; text-indent:0; text-align:left;
+  }
+  .cast-trait{
+    font-family:var(--sans); font-size:.8rem; line-height:1.95;
+    background:var(--washi-2); border-radius:10px; padding:1rem 1.1rem;
+    margin:0; text-indent:0; text-align:left; color:var(--sumi-soft);
+  }
+  .cast-trait-label{
+    display:block; font-size:.62rem; letter-spacing:.2em;
+    color:var(--sakura); margin-bottom:.5rem;
+  }
+  .lang-en .cast-trait-label{ text-transform:uppercase; }
+
+  .cast-relation{ margin-top:3rem; padding-top:2.2rem; border-top:1px solid var(--line); }
+  .cast-relation h3{
+    text-align:center; font-size:1rem; font-weight:600;
+    letter-spacing:.16em; text-indent:.16em; margin-bottom:1.6rem;
+  }
+  .lang-en .cast-relation h3{ letter-spacing:.06em; text-indent:0; }
+  .cast-relation ul{ list-style:none; display:flex; flex-direction:column; gap:1rem; }
+  .cast-relation li{
+    font-family:var(--sans); font-size:.82rem; line-height:1.95;
+    color:var(--sumi-soft); text-indent:0; text-align:left;
+  }
+  .cast-relation li b{ color:var(--sakura-deep, #c76d8b); font-weight:600; }
+
+  @media print{ .cast-page{ page-break-after:always; } }
+
+  /* ---------- 第二節の扉 ---------- */
+  .part-divider{ text-align:center; padding:18vh 0 6vh; }
+  .part-divider .part-num{
+    display:inline-block; font-family:var(--sans); font-size:.68rem;
+    letter-spacing:.44em; text-indent:.44em; color:var(--sakura);
+    border:1px solid var(--sakura-pale); border-radius:999px;
+    padding:.52rem 1.5rem .48rem; margin-bottom:1.8rem;
+  }
+  .part-divider h2{
+    font-size:clamp(1.3rem,4vw,1.9rem); font-weight:600;
+    letter-spacing:.14em; text-indent:.14em; line-height:1.7;
+  }
+  .part-divider .part-lead{
+    font-family:var(--sans); font-size:.76rem; letter-spacing:.3em;
+    text-indent:.3em; color:var(--sumi-soft); margin-top:1.3rem; opacity:.85;
+  }
+  .toc-part{
+    font-family:var(--sans); font-size:.66rem; letter-spacing:.2em;
+    color:var(--sakura); margin:1rem 0 .3rem; padding-top:.7rem;
+    border-top:1px solid var(--sakura-pale);
+  }
+
   /* ---------- 桜の花びら（舞い落ちる装飾・SVG／画像素材なし） ---------- */
   .sakura{
     position:fixed; inset:0; overflow:hidden;
@@ -405,11 +503,69 @@
     <a href="#ja-ch5"><span class="toc-no">五</span>別に、あんたのためじゃないから</a>
     <a href="#ja-ch6"><span class="toc-no">六</span>文化祭の、いちばん静かな場所</a>
     <a href="#ja-ch7"><span class="toc-no">七</span>約束のかたち</a>
+    <div class="toc-part">第 二 節　四季のなかで</div>
+    <a href="#ja-ch8"><span class="toc-no">八</span>春 ――卒業式と、新しい季節</a>
+    <a href="#ja-ch9"><span class="toc-no">九</span>夏 ――水着と、夏祭りと、大混乱</a>
+    <a href="#ja-ch10"><span class="toc-no">十</span>秋 ――文化祭と、恋の宣言</a>
+    <a href="#ja-ch11"><span class="toc-no">十一</span>冬 ――雪の日の答え</a>
   </nav>
   <div class="scroll-hint">SCROLL</div>
 </header>
 
 <main>
+  <!-- 登場人物紹介 -->
+  <section class="cast-page" id="ja-cast">
+    <div class="cast-head">
+      <div class="cast-label">登 場 人 物</div>
+      <h2>四人のこと</h2>
+    </div>
+
+    <div class="cast-list">
+
+      <article class="cast-card">
+        <div class="cast-role">主人公</div>
+        <h3>吉原 修平<span class="cast-yomi">よしはら しゅうへい</span></h3>
+        <p class="cast-meta">高校二年生 ／ 一人称「俺」</p>
+        <p class="cast-desc">裕福な家に生まれながら、派手な暮らしを好まない物静かな少年。学校では目立たず、図書室で本を読んでいるような生き方をしている。誠実だが、恋愛にはとことん不器用。</p>
+        <p class="cast-trait"><span class="cast-trait-label">この物語の軸</span>誰かの失敗の話を聞くと、必ず先に相手の心配をする。本人にとっては呼吸のように当たり前のその癖が、三人の想いの起点になっている。</p>
+      </article>
+
+      <article class="cast-card">
+        <div class="cast-role">メインヒロイン</div>
+        <h3>桜庭 紗和<span class="cast-yomi">さくらば さわ</span></h3>
+        <p class="cast-meta">十八歳（修平の一つ年上） ／ 4月12日生まれ ／ 一人称「わたし」</p>
+        <p class="cast-desc">修平の幼馴染で、許嫁。吉原家の正式なメイドを目指す「メイド見習い」。おっとりとして皆を包み込む、優しいお姉さん。真面目で責任感が強く、文武両道。家事全般が得意——なのに、絶望的にドジ。</p>
+        <p class="cast-quote">「おはようございます、修平様。今日も素敵な一日になりますように」</p>
+      </article>
+
+      <article class="cast-card">
+        <div class="cast-role">サブヒロイン</div>
+        <h3>朝比奈 美月<span class="cast-yomi">あさひな みづき</span></h3>
+        <p class="cast-meta">十八歳（三年生） ／ 黒髪ボブ・星形のヘアピン ／ 一人称「わたし」</p>
+        <p class="cast-desc">紗和の一番の親友。穏やかで聞き上手、少し天然だけれど気配り上手で、困っている人を放っておけない。読書とお菓子作り（チーズケーキが得意）、星空と夜の静かな時間が好き。修平の誠実さに惹かれながら、その想いは胸の奥にしまっている。</p>
+        <p class="cast-quote">「小さな幸せを見つけて、自分らしく笑顔でいてね。いつでも味方だよ!」</p>
+      </article>
+
+      <article class="cast-card">
+        <div class="cast-role">サブヒロイン</div>
+        <h3>白石 琴音<span class="cast-yomi">しらいし ことね</span></h3>
+        <p class="cast-meta">十六歳（一年生） ／ 9月23日生まれ ／ 銀髪・エメラルドグリーンの瞳 ／ 一人称「あたし」</p>
+        <p class="cast-desc">明るく元気いっぱいで、好奇心旺盛。誰とでもすぐ仲良くなれるけれど、とてもドジ。努力家で負けず嫌い、そして素直になれないツンデレ。修平を「先輩」と呼び、その優しさに触れて少しずつ心を開いていく。</p>
+        <p class="cast-quote">「べ、別にあんたのためにやってるわけじゃないんだから!」</p>
+      </article>
+
+    </div>
+
+    <div class="cast-relation">
+      <h3>関係</h3>
+      <ul>
+        <li><b>紗和 と 美月</b>　親友。お昼を一緒に食べ、試験前は図書室で勉強する。紗和は毎日のように、美月へ修平の話をする。</li>
+        <li><b>紗和 と 琴音</b>　紗和は教育係のお姉さん。琴音のドジを叱りながら、必ず最後はフォローする。</li>
+        <li><b>美月 と 琴音</b>　優しい姉のような親友であり、相談相手。</li>
+      </ul>
+    </div>
+  </section>
+
 
   <!-- 第一章 -->
   <section class="chapter" id="ja-ch1">
@@ -728,10 +884,538 @@
     <p class="indent">それでも、たしかなことが一つだけある。</p>
     <p class="indent">幼い頃に結ばれた約束は、今日、たしかに――少しだけ、恋のかたちに変わったのだ。</p>
 
-    <div class="end">了</div>
+    <div class="end">第 一 節 完</div>
   </section>
 
 
+  <!-- 第二節 扉 -->
+  <div class="part-divider" id="ja-part2">
+    <div class="part-num">第 二 節</div>
+    <h2>四季のなかで</h2>
+    <div class="part-lead">春 ／ 夏 ／ 秋 ／ 冬</div>
+  </div>
+
+  <!-- 第八章 -->
+  <section class="chapter" id="ja-ch8">
+    <div class="chapter-head">
+      <div class="chapter-num">第 八 章</div>
+      <h2>春 ――卒業式と、新しい季節</h2>
+      <div class="pov">吉原 修平</div>
+    </div>
+
+    <p class="indent">高校の卒業式の日。</p>
+    <p class="indent">校門へ続く道には、まだ少し早い桜の花びらが風に揺れていた。</p>
+    <p class="indent">俺は校門の近くに立っていた。</p>
+    <p class="indent">今日は、朝比奈美月先輩と桜庭紗和の卒業式だった。</p>
+    <p class="indent">「修平様」</p>
+    <p class="indent">聞き慣れた声に振り返る。</p>
+    <p class="indent">そこには、制服姿の紗和がいた。</p>
+    <p class="indent">胸元には卒業生の花。</p>
+    <p class="indent">いつものメイド服ではない。</p>
+    <p class="indent">それだけなのに、俺は少しだけ緊張した。</p>
+    <p class="indent">「卒業、おめでとう」</p>
+    <p class="indent">「ありがとうございます」</p>
+    <p class="indent">紗和は、いつものふわふわした笑顔を浮かべた。</p>
+    <p class="indent">けれど、その目は少し潤んでいた。</p>
+    <p class="indent">「わたし、もう高校生ではなくなるんですね」</p>
+    <p class="indent">「……そうだな」</p>
+    <p class="indent">「修平様と、毎朝同じ時間に家を出て、学校へ行くこともなくなります」</p>
+    <p class="indent">そう言われて、胸の奥が少し痛くなった。</p>
+    <p class="indent">当たり前だったものが、当たり前ではなくなる。</p>
+    <p class="indent">そんなことを、今まで考えたこともなかった。</p>
+    <p class="indent">「でも」</p>
+    <p class="indent">紗和が、ゆっくりと俺を見上げた。</p>
+    <p class="indent">「これからも、毎朝お起こししますね」</p>
+    <p class="indent">「……それは卒業しても続くのか」</p>
+    <p class="indent">「もちろんです。メイド見習いですから」</p>
+    <p class="indent">「まだ見習いなのか」</p>
+    <p class="indent">「いつか一人前になります」</p>
+    <p class="indent">自信満々に言った直後、紗和は段差につまずいた。</p>
+    <p class="indent">「あっ」</p>
+    <p class="indent">「危ない!」</p>
+    <p class="indent">俺は慌てて腕を掴んだ。</p>
+    <p class="indent">紗和は俺の腕の中で、ぱちぱちと目を瞬かせる。</p>
+    <p class="indent">「……怪我は?」</p>
+    <p class="indent">俺が聞くと、紗和は少しだけ笑った。</p>
+    <p class="indent">「大丈夫です」</p>
+    <p class="indent">「ならよかった」</p>
+    <p class="indent">「修平様」</p>
+    <p class="indent">「ん?」</p>
+    <p class="indent">「わたし、ずっと思っていたんです」</p>
+    <p class="indent">春の風が吹いた。</p>
+    <p class="indent">「いつか、修平様が『許嫁だから』ではなく、『桜庭紗和だから』わたしの隣にいてくださる日が来たらいいなって」</p>
+    <p class="indent">俺は答えられなかった。</p>
+    <p class="indent">まだ、自分の気持ちを完全には言葉にできない。</p>
+    <p class="indent">でも。</p>
+    <p class="indent">「……努力する」</p>
+    <p class="indent">「え?」</p>
+    <p class="indent">「ちゃんと考える。逃げないで」</p>
+    <p class="indent">紗和は驚いた顔をした。</p>
+    <p class="indent">そして、ゆっくり笑った。</p>
+    <p class="indent">「はい」</p>
+    <p class="indent">そのとき。</p>
+    <p class="indent">「おーい! 二人ともー!」</p>
+    <p class="indent">後ろから朝比奈先輩が手を振っていた。</p>
+    <p class="indent">「卒業写真、撮るよー!」</p>
+    <p class="indent">「美月先輩!」</p>
+    <p class="indent">紗和が駆け出す。</p>
+    <p class="indent">……と思ったら。</p>
+    <p class="indent">「あっ」</p>
+    <p class="indent">また転びそうになった。</p>
+    <p class="indent">「紗和!」</p>
+    <p class="indent">俺が慌てて追いかけると、朝比奈先輩が笑った。</p>
+    <p class="indent">「ふふ。これからも変わらなそうだね」</p>
+    <p class="indent">その言葉を聞いて、俺も少し笑った。</p>
+    <p class="indent">春。</p>
+    <p class="indent">新しい生活が始まる。</p>
+    <p class="indent">そして俺たちの関係もまた、少しずつ変わり始めていた。</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">写真を撮り終えたあと。</p>
+    <p class="indent">朝比奈先輩が俺を呼び止めた。</p>
+    <p class="indent">「吉原くん」</p>
+    <p class="indent">「はい」</p>
+    <p class="indent">「……紗和のこと、よろしくね」</p>
+    <p class="indent">「先輩」</p>
+    <p class="indent">「もちろん、まだ決まってないんだよね」</p>
+    <p class="indent">美月先輩は笑った。</p>
+    <p class="indent">でも。</p>
+    <p class="indent">その笑顔の奥に、少しだけ寂しさが見えた。</p>
+    <p class="indent">「だから、わたしも応援するだけじゃなくて……これからは、自分のことも大切にしようと思う」</p>
+    <p class="indent">「……美月先輩」</p>
+    <p class="indent">「ふふ。心配しないで」</p>
+    <p class="indent">彼女はいつもの穏やかな笑顔を見せた。</p>
+    <p class="indent">「わたしは、わたしの幸せを探すから」</p>
+    <p class="indent">春の空は、どこまでも青かった。</p>
+    <p class="indent">そして桜の蕾は、もうすぐ開こうとしていた。</p>
+  </section>
+
+  <!-- 第九章 -->
+  <section class="chapter" id="ja-ch9">
+    <div class="chapter-head">
+      <div class="chapter-num">第 九 章</div>
+      <h2>夏 ――水着と、夏祭りと、大混乱</h2>
+      <div class="pov">吉原 修平</div>
+    </div>
+
+    <p class="indent">夏休み。</p>
+    <p class="indent">吉原家の別荘。</p>
+    <p class="indent">……俺は今、とても困っていた。</p>
+    <p class="indent">「修平様ー!」</p>
+    <p class="indent">庭から紗和の声が聞こえる。</p>
+    <p class="indent">「見てください! 水着です!」</p>
+    <p class="indent">「……見えてる」</p>
+    <p class="indent">「どうでしょう?」</p>
+    <p class="indent">「似合ってる」</p>
+    <p class="indent">「……っ!」</p>
+    <p class="indent">一瞬で紗和の顔が真っ赤になった。</p>
+    <p class="indent">「そ、そうですか……」</p>
+    <p class="indent">そのまま、ふらふらとプールの方へ歩いていく。</p>
+    <p class="indent">「紗和! 前!」</p>
+    <p class="indent">「え?」</p>
+    <p class="indent">ざばーん!</p>
+    <p class="indent">「きゃあああ!」</p>
+    <p class="indent">「大丈夫か!?」</p>
+    <p class="indent">俺が駆け寄ると。</p>
+    <p class="indent">「修平先輩?」</p>
+    <p class="indent">聞き慣れた声がした。</p>
+    <p class="indent">振り返る。</p>
+    <p class="indent">「……なんで白石がいるんだ」</p>
+    <p class="indent">「はぁ!?」</p>
+    <p class="indent">白石琴音が、浮き輪を抱えて立っていた。</p>
+    <p class="indent">「先輩が夏休み暇そうだったから来ただけですけど!?」</p>
+    <p class="indent">「誰が誘ったんだ」</p>
+    <p class="indent">「紗和先輩です!」</p>
+    <p class="indent">「え?」</p>
+    <p class="indent">プールから顔を出した紗和が、申し訳なさそうに笑った。</p>
+    <p class="indent">「みんなで遊んだ方が楽しいと思いまして……」</p>
+    <p class="indent">「吉原くん」</p>
+    <p class="indent">今度は別の声。</p>
+    <p class="indent">朝比奈美月先輩が日傘を差して立っていた。</p>
+    <p class="indent">「わたしもいるよ」</p>
+    <p class="indent">「……なんで全員いるんですか」</p>
+    <p class="indent">「夏休みですから」</p>
+    <p class="indent">美月先輩は穏やかに笑った。</p>
+    <p class="indent">「青春、しないと」</p>
+    <p class="indent">その後。</p>
+    <p class="indent">俺の夏休みは、完全に終わった。</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">夜。</p>
+    <p class="indent">俺たちは夏祭りへ行った。</p>
+    <p class="indent">紗和は浴衣。</p>
+    <p class="indent">美月先輩も浴衣。</p>
+    <p class="indent">琴音も浴衣。</p>
+    <p class="indent">……正直、心臓に悪い。</p>
+    <p class="indent">「修平様、どうでしょう?」</p>
+    <p class="indent">紗和がくるりと回る。</p>
+    <p class="indent">「似合ってる」</p>
+    <p class="indent">「……ありがとうございます」</p>
+    <p class="indent">「吉原くん」</p>
+    <p class="indent">美月先輩も少し首を傾げる。</p>
+    <p class="indent">「わたしは?」</p>
+    <p class="indent">「……似合ってます」</p>
+    <p class="indent">「ふふ。ありがとう」</p>
+    <p class="indent">「先輩!」</p>
+    <p class="indent">最後に琴音。</p>
+    <p class="indent">「……あたしは?」</p>
+    <p class="indent">「似合ってる」</p>
+    <p class="indent">「雑!」</p>
+    <p class="indent">「全員似合ってるんだから仕方ないだろ」</p>
+    <p class="indent">「それがダメなんですよ!」</p>
+    <p class="indent">「何が?」</p>
+    <p class="indent">「もう!」</p>
+    <p class="indent">琴音は顔を真っ赤にした。</p>
+    <p class="indent">その後。</p>
+    <p class="indent">紗和が射的でぬいぐるみを狙って失敗し。</p>
+    <p class="indent">美月先輩が金魚すくいでなぜか金魚を十匹取ってしまい。</p>
+    <p class="indent">琴音が焼きそばを食べながら俺の袖にソースをつけた。</p>
+    <p class="indent">そして最後。</p>
+    <p class="indent">四人で花火を見た。</p>
+    <p class="indent">夜空に、大きな花が咲く。</p>
+    <p class="indent">「綺麗ですね」</p>
+    <p class="indent">紗和が言った。</p>
+    <p class="indent">「そうですね」</p>
+    <p class="indent">美月先輩が答える。</p>
+    <p class="indent">「……まあ、悪くないんじゃないですか」</p>
+    <p class="indent">琴音が小さく言う。</p>
+    <p class="indent">俺は三人を見た。</p>
+    <p class="indent">紗和。</p>
+    <p class="indent">美月先輩。</p>
+    <p class="indent">琴音。</p>
+    <p class="indent">みんな、俺にとって大切な存在だった。</p>
+    <p class="indent">だからこそ。</p>
+    <p class="indent">「……困ったな」</p>
+    <p class="indent">「え?」</p>
+    <p class="indent">三人が俺を見る。</p>
+    <p class="indent">「いや」</p>
+    <p class="indent">俺は空を見上げた。</p>
+    <p class="indent">「夏休みが終わってほしくないなと思って」</p>
+    <p class="indent">少しの沈黙。</p>
+    <p class="indent">そして。</p>
+    <p class="indent">「……修平様」</p>
+    <p class="indent">「……吉原くん」</p>
+    <p class="indent">「……先輩」</p>
+    <p class="indent">三人とも、少しだけ嬉しそうに笑っていた。</p>
+  </section>
+
+  <!-- 第十章 -->
+  <section class="chapter" id="ja-ch10">
+    <div class="chapter-head">
+      <div class="chapter-num">第 十 章</div>
+      <h2>秋 ――文化祭と、恋の宣言</h2>
+      <div class="pov">吉原 修平</div>
+    </div>
+
+    <p class="indent">秋。</p>
+    <p class="indent">二学期。</p>
+    <p class="indent">文化祭の準備が始まった。</p>
+    <p class="indent">「修平様!」</p>
+    <p class="indent">紗和がメイド服姿で現れる。</p>
+    <p class="indent">「今年のクラスは、メイド喫茶です!」</p>
+    <p class="indent">「……それ、紗和が一番得意じゃないか」</p>
+    <p class="indent">「はい!」</p>
+    <p class="indent">自信満々だった。</p>
+    <p class="indent">しかし。</p>
+    <p class="indent">一時間後。</p>
+    <p class="indent">「あっ!」</p>
+    <p class="indent">ガシャン!</p>
+    <p class="indent">「……紗和」</p>
+    <p class="indent">「大丈夫です!」</p>
+    <p class="indent">「皿が割れたぞ」</p>
+    <p class="indent">「大丈夫です!」</p>
+    <p class="indent">「お前が大丈夫でも皿は大丈夫じゃない」</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">そこへ美月先輩が来た。</p>
+    <p class="indent">「紗和、手伝おうか?」</p>
+    <p class="indent">「美月ちゃん!」</p>
+    <p class="indent">「吉原くんも」</p>
+    <p class="indent">「はい」</p>
+    <p class="indent">俺たちは三人で準備を始めた。</p>
+    <p class="indent">すると。</p>
+    <p class="indent">「ちょっと待ってください!」</p>
+    <p class="indent">琴音がやってきた。</p>
+    <p class="indent">「なんで先輩が二人とばっかりいるんですか!」</p>
+    <p class="indent">「手伝ってるだけだ」</p>
+    <p class="indent">「じゃああたしも手伝います!」</p>
+    <p class="indent">「白石、お前のクラスは?」</p>
+    <p class="indent">「……サボりました」</p>
+    <p class="indent">「戻れ」</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">文化祭当日。</p>
+    <p class="indent">忙しい一日が終わったあと。</p>
+    <p class="indent">俺は屋上へ向かった。</p>
+    <p class="indent">そこには琴音がいた。</p>
+    <p class="indent">「先輩」</p>
+    <p class="indent">「どうした」</p>
+    <p class="indent">琴音はしばらく黙っていた。</p>
+    <p class="indent">そして。</p>
+    <p class="indent">「……あたし、先輩のこと好きです」</p>
+    <p class="indent">俺は目を見開いた。</p>
+    <p class="indent">「桜庭先輩のことが大切なのも知ってます」</p>
+    <p class="indent">琴音は笑った。</p>
+    <p class="indent">少しだけ、泣きそうな顔で。</p>
+    <p class="indent">「美月先輩も、たぶん……」</p>
+    <p class="indent">「白石」</p>
+    <p class="indent">「でも!」</p>
+    <p class="indent">琴音が俺を見る。</p>
+    <p class="indent">「それでも、好きになっちゃったんだから仕方ないじゃないですか!」</p>
+    <p class="indent">その言葉は。</p>
+    <p class="indent">まっすぐだった。</p>
+    <p class="indent">逃げる場所なんてないくらい。</p>
+    <p class="indent">「……だから」</p>
+    <p class="indent">琴音は深呼吸した。</p>
+    <p class="indent">「今すぐ答えなんていりません」</p>
+    <p class="indent">そして、いつものように。</p>
+    <p class="indent">少しだけ強がって笑った。</p>
+    <p class="indent">「でも、あたしも負けませんから!」</p>
+    <p class="indent">そう言って、彼女は走っていった。</p>
+    <p class="indent">俺は一人、屋上に残った。</p>
+    <p class="indent">秋の風が吹く。</p>
+    <p class="indent">……俺は、どうするべきなんだろう。</p>
+    <p class="indent">そのとき。</p>
+    <p class="indent">「難しい顔をしてるね」</p>
+    <p class="indent">美月先輩がいた。</p>
+    <p class="indent">「聞いてました?」</p>
+    <p class="indent">「少しだけ」</p>
+    <p class="indent">「……すみません」</p>
+    <p class="indent">「どうして謝るの?」</p>
+    <p class="indent">美月先輩は隣に座った。</p>
+    <p class="indent">「恋って、誰かが悪いから始まるものじゃないよ」</p>
+    <p class="indent">「でも」</p>
+    <p class="indent">「吉原くん」</p>
+    <p class="indent">彼女は俺を見る。</p>
+    <p class="indent">「ちゃんと悩んで」</p>
+    <p class="indent">「……はい」</p>
+    <p class="indent">「そして最後は、自分で選んで」</p>
+    <p class="indent">その言葉は。</p>
+    <p class="indent">以前、紗和に言った言葉と同じだった。</p>
+    <p class="indent">約束ではなく。</p>
+    <p class="indent">自分で選ぶ。</p>
+    <p class="indent">俺は、ゆっくり頷いた。</p>
+  </section>
+
+  <!-- 第十一章 -->
+  <section class="chapter" id="ja-ch11">
+    <div class="chapter-head">
+      <div class="chapter-num">第 十一 章</div>
+      <h2>冬 ――雪の日の答え</h2>
+      <div class="pov">吉原 修平</div>
+    </div>
+
+    <p class="indent">冬。</p>
+    <p class="indent">初雪が降った。</p>
+    <p class="indent">学校からの帰り道。</p>
+    <p class="indent">俺は紗和と歩いていた。</p>
+    <p class="indent">「寒いですね」</p>
+    <p class="indent">「そうだな」</p>
+    <p class="indent">「修平様」</p>
+    <p class="indent">「ん?」</p>
+    <p class="indent">「覚えていますか?」</p>
+    <p class="indent">紗和が空を見上げた。</p>
+    <p class="indent">「小さい頃、初雪の日に、わたしたち約束しましたよね」</p>
+    <p class="indent">俺は覚えていた。</p>
+    <p class="indent">まだ幼かった頃。</p>
+    <p class="indent">大人たちに言われた。</p>
+    <p class="indent">「将来、二人は一緒になるんだよ」</p>
+    <p class="indent">そのとき。</p>
+    <p class="indent">俺たちは意味も分からず頷いた。</p>
+    <p class="indent">「わたし」</p>
+    <p class="indent">紗和が立ち止まった。</p>
+    <p class="indent">「あの約束が、ずっと嬉しかったんです」</p>
+    <p class="indent">俺も立ち止まる。</p>
+    <p class="indent">「でも」</p>
+    <p class="indent">紗和は少し笑った。</p>
+    <p class="indent">「今は、少し怖いんです」</p>
+    <p class="indent">「……怖い?」</p>
+    <p class="indent">「修平様が、わたしを選んでくださる理由が、約束だったらどうしようって」</p>
+    <p class="indent">雪が降る。</p>
+    <p class="indent">白い世界の中。</p>
+    <p class="indent">紗和は、俺を見ていた。</p>
+    <p class="indent">「だから」</p>
+    <p class="indent">震える声。</p>
+    <p class="indent">「もし、修平様が違う人を好きになったなら」</p>
+    <p class="indent">「紗和」</p>
+    <p class="indent">「わたしは……」</p>
+    <p class="indent">「違う」</p>
+    <p class="indent">俺は言った。</p>
+    <p class="indent">紗和が目を見開く。</p>
+    <p class="indent">「約束だからじゃない」</p>
+    <p class="indent">「……え?」</p>
+    <p class="indent">「俺が選ぶ」</p>
+    <p class="indent">ずっと考えていた。</p>
+    <p class="indent">春も。</p>
+    <p class="indent">夏も。</p>
+    <p class="indent">秋も。</p>
+    <p class="indent">三人と過ごして。</p>
+    <p class="indent">自分の気持ちを逃げずに考えた。</p>
+    <p class="indent">琴音は、俺にまっすぐぶつかってきた。</p>
+    <p class="indent">美月先輩は、俺が悩めるように背中を押してくれた。</p>
+    <p class="indent">そして。</p>
+    <p class="indent">紗和は。</p>
+    <p class="indent">ずっと、俺のそばにいた。</p>
+    <p class="indent">「紗和」</p>
+    <p class="indent">俺は彼女の名前を呼ぶ。</p>
+    <p class="indent">「お前が笑うと安心する」</p>
+    <p class="indent">紗和の目が揺れた。</p>
+    <p class="indent">「お前が失敗すると心配になる」</p>
+    <p class="indent">「……はい」</p>
+    <p class="indent">「お前が他の誰かと遠くへ行くのを想像すると、嫌だと思う」</p>
+    <p class="indent">「修平様」</p>
+    <p class="indent">「だから」</p>
+    <p class="indent">俺は少しだけ息を吸った。</p>
+    <p class="indent">「俺は、桜庭紗和が好きだ」</p>
+    <p class="indent">雪が。</p>
+    <p class="indent">静かに降り続いていた。</p>
+    <p class="indent">紗和は、しばらく動かなかった。</p>
+    <p class="indent">そして。</p>
+    <p class="indent">「……ずるいです」</p>
+    <p class="indent">「またそれか」</p>
+    <p class="indent">「だって」</p>
+    <p class="indent">彼女の目から涙が落ちた。</p>
+    <p class="indent">でも。</p>
+    <p class="indent">紗和は笑っていた。</p>
+    <p class="indent">「そんなことを言われたら……わたし、もうずっと幸せです」</p>
+    <p class="indent">「紗和」</p>
+    <p class="indent">「はい」</p>
+    <p class="indent">「これからも、俺のそばにいてくれるか」</p>
+    <p class="indent">紗和は、大きく頷いた。</p>
+    <p class="indent">「はい!」</p>
+    <p class="indent">そして。</p>
+    <p class="indent">「修平様のメイドとして……ではなく」</p>
+    <p class="indent">一歩、近づく。</p>
+    <p class="indent">「修平様の恋人として」</p>
+    <p class="indent">俺たちは。</p>
+    <p class="indent">初めて手を繋いだ。</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">翌日。</p>
+    <p class="indent">「ええええええええ!?」</p>
+    <p class="indent">琴音の叫び声が教室に響いた。</p>
+    <p class="indent">「つ、ついに付き合ったんですか!?」</p>
+    <p class="indent">「ああ」</p>
+    <p class="indent">「……そっか」</p>
+    <p class="indent">琴音は少しだけ寂しそうに笑った。</p>
+    <p class="indent">でも。</p>
+    <p class="indent">すぐに俺の背中を叩いた。</p>
+    <p class="indent">「なら絶対、桜庭先輩泣かせないでくださいよ!」</p>
+    <p class="indent">「分かってる」</p>
+    <p class="indent">「……約束ですよ」</p>
+    <p class="indent">「約束する」</p>
+    <p class="indent">「よろしい!」</p>
+    <p class="indent">その隣で。</p>
+    <p class="indent">美月先輩も笑っていた。</p>
+    <p class="indent">「おめでとう、二人とも」</p>
+    <p class="indent">「ありがとうございます、美月ちゃん」</p>
+    <p class="indent">「ふふ」</p>
+    <p class="indent">美月先輩は少しだけ空を見上げた。</p>
+    <p class="indent">「これで、やっと前に進めるかな」</p>
+    <p class="indent">「先輩?」</p>
+    <p class="indent">「なんでもないよ」</p>
+    <p class="indent">そして。</p>
+    <p class="indent">彼女は俺たちを見た。</p>
+    <p class="indent">「二人とも、幸せになってね」</p>
+    <p class="indent">「はい」</p>
+    <p class="indent">紗和が答える。</p>
+    <p class="indent">俺も頷いた。</p>
+    <p class="indent">「……はい」</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">春。</p>
+    <p class="indent">桜が咲いた。</p>
+    <p class="indent">あの中庭の桜の木の下。</p>
+    <p class="indent">俺たちはまた集まっていた。</p>
+    <p class="indent">紗和は、相変わらずメイド見習いだった。</p>
+    <p class="indent">「修平様、お弁当です!」</p>
+    <p class="indent">「……なんで学校までメイド服なんだ」</p>
+    <p class="indent">「今日は特別です!」</p>
+    <p class="indent">「何が?」</p>
+    <p class="indent">「恋人になって初めてのお花見ですから!」</p>
+    <p class="indent">「関係あるか?」</p>
+    <p class="indent">「あります!」</p>
+    <p class="indent">その隣で。</p>
+    <p class="indent">美月先輩が笑っていた。</p>
+    <p class="indent">「相変わらずだね」</p>
+    <p class="indent">「美月ちゃんも食べてください!」</p>
+    <p class="indent">「ありがとう」</p>
+    <p class="indent">そして琴音。</p>
+    <p class="indent">「先輩! あたしの弁当もありますから!」</p>
+    <p class="indent">「なんで?」</p>
+    <p class="indent">「……余ったんです!」</p>
+    <p class="indent">「絶対嘘だな」</p>
+    <p class="indent">「うるさい!」</p>
+    <p class="indent">桜の花びらが舞う。</p>
+    <p class="indent">一年前。</p>
+    <p class="indent">俺たちはまだ、自分たちの気持ちを知らなかった。</p>
+    <p class="indent">約束。</p>
+    <p class="indent">友情。</p>
+    <p class="indent">憧れ。</p>
+    <p class="indent">恋。</p>
+    <p class="indent">それぞれの気持ちは、時々すれ違って。</p>
+    <p class="indent">時々苦しくなって。</p>
+    <p class="indent">それでも。</p>
+    <p class="indent">俺たちは前に進んだ。</p>
+    <p class="indent">「修平様」</p>
+    <p class="indent">紗和が俺の隣で笑う。</p>
+    <p class="indent">「幸せですね」</p>
+    <p class="indent">俺は周りを見る。</p>
+    <p class="indent">美月先輩が笑っている。</p>
+    <p class="indent">琴音が騒いでいる。</p>
+    <p class="indent">そして紗和が、俺の手を握っている。</p>
+    <p class="indent">「……ああ」</p>
+    <p class="indent">俺も手を握り返した。</p>
+    <p class="indent">「幸せだな」</p>
+    <p class="indent">春夏秋冬。</p>
+    <p class="indent">たくさんの季節を過ごして。</p>
+    <p class="indent">俺たちは少しずつ変わった。</p>
+    <p class="indent">幼い頃に結ばれた約束は。</p>
+    <p class="indent">もう、俺たちを縛るものではない。</p>
+    <p class="indent">自分たちで選んだ。</p>
+    <p class="indent">自分たちの気持ちで。</p>
+    <p class="indent">そして今。</p>
+    <p class="indent">約束は、ようやく本当の意味を持った。</p>
+    <p class="indent">桜の下で。</p>
+    <p class="indent">大切な人たちに囲まれて。</p>
+    <p class="indent">俺は思う。</p>
+    <p class="indent">――これから先も。</p>
+    <p class="indent">何度、季節が巡っても。</p>
+    <p class="indent">この笑顔を守っていきたい、と。</p>
+    <p class="indent">そして。</p>
+    <p class="indent">桜庭紗和は、俺の隣でいつものように笑った。</p>
+    <p class="indent">「修平様」</p>
+    <p class="indent">「なんだ?」</p>
+    <p class="indent">「明日も、起こしに行きますね」</p>
+    <p class="indent">「……恋人になっても?」</p>
+    <p class="indent">「もちろんです」</p>
+    <p class="indent">「様付けは?」</p>
+    <p class="indent">「やめません」</p>
+    <p class="indent">「そこは変えないのか」</p>
+    <p class="indent">「ふふふ」</p>
+    <p class="indent">春の風が吹く。</p>
+    <p class="indent">桜の花びらが舞い上がる。</p>
+    <p class="indent">その中で。</p>
+    <p class="indent">俺たちは笑っていた。</p>
+    <p class="indent">これは。</p>
+    <p class="indent">メイド見習いの幼馴染と。</p>
+    <p class="indent">静かな主人と。</p>
+    <p class="indent">穏やかな親友と。</p>
+    <p class="indent">元気な後輩が過ごした。</p>
+    <p class="indent">少し騒がしくて。</p>
+    <p class="indent">少し甘くて。</p>
+    <p class="indent">とても幸せな。</p>
+    <p class="indent">恋の物語。</p>
+    <p class="indent">――そして、これからも続いていく。</p>
+
+    <div class="end">Happy End</div>
+  </section>
 </main>
 </div><!-- /.lang-ja -->
 
@@ -775,6 +1459,59 @@
 </header>
 
 <main>
+  <!-- Cast -->
+  <section class="cast-page" id="en-cast">
+    <div class="cast-head">
+      <div class="cast-label">The Cast</div>
+      <h2>The Four of Them</h2>
+    </div>
+
+    <div class="cast-list">
+
+      <article class="cast-card">
+        <div class="cast-role">Protagonist</div>
+        <h3>Shuhei Yoshihara</h3>
+        <p class="cast-meta">Second-year, high school</p>
+        <p class="cast-desc">Born into a wealthy family, yet with no taste at all for a showy life. At school he keeps to himself, the sort who reads by the window in the library. Honest to a fault — and hopeless when it comes to love.</p>
+        <p class="cast-trait"><span class="cast-trait-label">The thread of this story</span>Whenever he hears about someone's failure, the first thing he does is worry about them. To him it is as ordinary as breathing — and it is where all three girls' feelings begin.</p>
+      </article>
+
+      <article class="cast-card">
+        <div class="cast-role">Main Heroine</div>
+        <h3>Sawa Sakuraba</h3>
+        <p class="cast-meta">Eighteen (one year his senior) — born April 12</p>
+        <p class="cast-desc">Shuhei's childhood friend, and his betrothed. A maid-in-training aiming to become the Yoshihara household's official maid. Gentle and unhurried, the kind of older sister who gathers everyone in. Earnest, responsible, good at her studies and at sports. Skilled at every household task — and hopelessly clumsy all the same.</p>
+        <p class="cast-quote">"Good morning, Master Shuhei. May today be a wonderful day for you."</p>
+      </article>
+
+      <article class="cast-card">
+        <div class="cast-role">Supporting Heroine</div>
+        <h3>Mizuki Asahina</h3>
+        <p class="cast-meta">Eighteen (third-year) — black bob, star-shaped hairpin</p>
+        <p class="cast-desc">Sawa's closest friend. Calm and a good listener; a little in the clouds, yet endlessly attentive, and unable to leave anyone in trouble alone. She loves books and baking (cheesecake is her specialty), starry skies and the quiet hours of the night. Drawn to Shuhei's sincerity — and keeping that feeling folded away in her chest.</p>
+        <p class="cast-quote">"Find the little joys, and keep smiling in your own way. I'm always on your side!"</p>
+      </article>
+
+      <article class="cast-card">
+        <div class="cast-role">Supporting Heroine</div>
+        <h3>Kotone Shiraishi</h3>
+        <p class="cast-meta">Sixteen (first-year) — born September 23 — silver hair, emerald eyes</p>
+        <p class="cast-desc">Bright, energetic, endlessly curious. She makes friends with anyone in moments — and she is a spectacular klutz. Hard-working and fiercely competitive, and utterly incapable of being honest about her feelings. She calls Shuhei "senpai," and little by little his kindness opens her up.</p>
+        <p class="cast-quote">"I— it's not like I'm doing this for you or anything!"</p>
+      </article>
+
+    </div>
+
+    <div class="cast-relation">
+      <h3>Between Them</h3>
+      <ul>
+        <li><b>Sawa &amp; Mizuki</b>　Best friends. They eat lunch together and study in the library before exams. Sawa talks to Mizuki about Shuhei nearly every day.</li>
+        <li><b>Sawa &amp; Kotone</b>　Sawa is the older sister who shows her the ropes — scolding Kotone for her blunders, then covering for her every time.</li>
+        <li><b>Mizuki &amp; Kotone</b>　A gentle elder-sister sort of friend, and the one Kotone turns to for advice.</li>
+      </ul>
+    </div>
+  </section>
+
 
   <!-- Chapter One -->
   <section class="chapter" id="en-ch1">
