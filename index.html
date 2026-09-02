@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桜色メイドは、幼馴染で許嫁でした。</title>
+<meta name="description" content="青春ラブコメディ短編小説（日本語・英語／全7章）。複数AIの連携で制作。言語切替・後日談のAI執筆デモつき。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Shippori+Mincho:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sumi:#2b2430;
+    --sumi-soft:#4d4453;
+    --washi:#fbf7f4;
+    --washi-2:#f4ebe6;
+    --sakura:#d98ca6;
+    --sakura-pale:#f0d3dc;
+    --hakua:#ffffff;
+    --line:#e3d5d0;
+    --serif-ja:"Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    --serif-en:"Cormorant Garamond", "Shippori Mincho", serif;
+    --sans:"Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--washi);
+    color:var(--sumi);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- 言語切替 ---------- */
+  .lang-switch{
+    position:fixed;
+    top:1rem; right:1rem;
+    z-index:100;
+    display:flex;
+    gap:.25rem;
+    padding:.28rem;
+    background:rgba(251,247,244,.82);
+    border:1px solid var(--line);
+    border-radius:999px;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    box-shadow:0 2px 12px rgba(43,36,48,.06);
+  }
+  .lang-switch button{
+    font-family:var(--sans);
+    font-size:.7rem;
+    letter-spacing:.14em;
+    color:var(--sumi-soft);
+    background:transparent;
+    border:none;
+    border-radius:999px;
+    padding:.4rem .9rem;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease;
+  }
+  .lang-switch button:hover{ color:var(--sakura); }
+  .lang-switch button.is-active{
+    background:var(--sakura);
+    color:var(--hakua);
+  }
+
+  /* ---------- 言語別表示切替 ---------- */
+  .lang-content{ display:none; }
+  body[data-lang="ja"] .lang-ja{ display:block; }
+  body[data-lang="en"] .lang-en{ display:block; }
+
+  .lang-ja{ font-family:var(--serif-ja); line-height:2.1; }
+  .lang-en{ font-family:var(--serif-en); line-height:1.85; }
+
+  /* ---------- 表紙 ---------- */
+  .cover{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:6vh 6vw;
+    position:relative;
+    background:
+      radial-gradient(120% 90% at 50% 0%, var(--hakua) 0%, var(--washi) 45%, var(--washi-2) 100%);
+    overflow:hidden;
+  }
+  .cover::after{
+    content:"";
+    position:absolute; inset:auto 0 0 0; height:1px;
+    background:linear-gradient(90deg,transparent,var(--line),transparent);
+  }
+  .kicker{
+    font-family:var(--sans);
+    font-size:.72rem;
+    letter-spacing:.42em;
+    color:var(--sakura);
+    text-indent:.42em;
+    margin-bottom:3.2rem;
+  }
+  .lang-en .kicker{ text-transform:uppercase; }
+  .cover h1{
+    font-weight:800;
+    font-size:clamp(1.9rem, 5.6vw, 3.6rem);
+    line-height:1.55;
+    letter-spacing:.09em;
+    text-indent:.09em;
+  }
+  .cover h1 .accent{ color:var(--sakura); }
+  .lang-en .cover h1{
+    font-weight:700;
+    font-size:clamp(1.9rem, 5.4vw, 3.4rem);
+    line-height:1.4;
+    letter-spacing:.02em;
+    text-indent:0;
+    max-width:22ch;
+  }
+  .lang-en .cover h1 .accent{ font-style:italic; }
+  .rule{
+    width:1px; height:64px;
+    background:linear-gradient(180deg,var(--sakura),transparent);
+    margin:2.6rem auto;
+  }
+  .cast{
+    font-family:var(--sans);
+    font-size:.8rem;
+    line-height:2.4;
+    letter-spacing:.16em;
+    color:var(--sumi-soft);
+  }
+  .cast span{ color:var(--sakura); }
+  .scroll-hint{
+    margin-top:2.8rem;
+    font-family:var(--sans); font-size:.68rem; letter-spacing:.3em;
+    color:var(--sumi-soft); opacity:.7;
+  }
+
+  /* ---------- 本文 ---------- */
+  main{
+    max-width:660px;
+    margin:0 auto;
+    padding:0 7vw 14vh;
+  }
+  .lang-en main{ max-width:680px; }
+  .chapter{ padding-top:12vh; }
+  .chapter-head{
+    text-align:center;
+    margin-bottom:5.5rem;
+  }
+  .lang-en .chapter-head{ margin-bottom:5rem; }
+  .chapter-num{
+    display:inline-block;
+    font-family:var(--sans);
+    font-size:.66rem;
+    letter-spacing:.4em;
+    text-indent:.4em;
+    color:var(--sakura);
+    border:1px solid var(--sakura-pale);
+    border-radius:999px;
+    padding:.42rem 1.1rem .38rem;
+    margin-bottom:1.6rem;
+  }
+  .lang-en .chapter-num{ text-transform:uppercase; }
+  .chapter-head h2{
+    font-size:clamp(1.25rem,3.6vw,1.7rem);
+    font-weight:600;
+    letter-spacing:.12em;
+    text-indent:.12em;
+    line-height:1.8;
+  }
+  .lang-en .chapter-head h2{
+    font-size:clamp(1.4rem,3.8vw,1.9rem);
+    letter-spacing:.03em;
+    text-indent:0;
+    line-height:1.5;
+  }
+  .pov{
+    font-family:var(--sans);
+    font-size:.7rem;
+    letter-spacing:.26em;
+    color:var(--sumi-soft);
+    margin-top:1rem;
+    opacity:.75;
+  }
+  .lang-en .pov{ text-transform:uppercase; }
+  p{
+    font-size:1.02rem;
+    letter-spacing:.03em;
+    margin-bottom:1.9rem;
+    text-align:justify;
+  }
+  .lang-ja p{ text-indent:1em; }
+  .lang-en p{
+    font-size:1.13rem;
+    letter-spacing:normal;
+    margin-bottom:1.5rem;
+    text-align:left;
+  }
+  .break{
+    text-align:center;
+    color:var(--sakura-pale);
+    letter-spacing:1.2em;
+    text-indent:1.2em;
+    margin:3.4rem 0;
+    font-size:.8rem;
+  }
+  .lang-en .break{ margin:3.2rem 0; }
+  .end{
+    margin-top:10vh;
+    text-align:center;
+    font-family:var(--sans);
+    font-size:.72rem;
+    letter-spacing:.5em;
+    text-indent:.5em;
+    color:var(--sumi-soft);
+    padding-top:4rem;
+    border-top:1px solid var(--line);
+  }
+  .lang-en .end{ text-transform:uppercase; }
+
+  @media (max-width:600px){
+    .lang-ja{ line-height:2.0; }
+    main{ padding:0 8vw 12vh; }
+    .lang-ja p{ font-size:.98rem; }
+    .lang-en p{ font-size:1.05rem; }
+    .lang-switch{ top:.7rem; right:.7rem; }
+  }
+
+  /* ---------- 目次 ---------- */
+  .toc{
+    display:flex; flex-direction:column; gap:.4rem;
+    margin-top:2.6rem; width:100%; max-width:30ch;
+  }
+  .toc a{
+    font-family:var(--sans); font-size:.78rem; letter-spacing:.08em;
+    color:var(--sumi-soft); text-decoration:none;
+    display:flex; align-items:baseline; gap:.75rem;
+    padding:.34rem .3rem; border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+    text-align:left;
+  }
+  .toc a:hover{ color:var(--sakura); border-bottom-color:var(--sakura-pale); }
+  .toc .toc-no{
+    color:var(--sakura); font-size:.72rem; letter-spacing:.1em;
+    min-width:1.8em; text-align:center; flex:none;
+  }
+  .lang-en .toc a{ letter-spacing:.02em; }
+
+  /* ---------- 上へ戻る ---------- */
+  .to-top{
+    position:fixed; right:1rem; bottom:1rem; z-index:100;
+    width:2.9rem; height:2.9rem; border-radius:50%;
+    border:1px solid var(--line); background:rgba(251,247,244,.85);
+    color:var(--sakura); font-size:1.1rem; line-height:1; cursor:pointer;
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    box-shadow:0 2px 12px rgba(43,36,48,.08);
+    opacity:0; visibility:hidden; transform:translateY(8px);
+    transition:opacity .25s ease, transform .25s ease, visibility .25s;
+  }
+  .to-top.is-visible{ opacity:1; visibility:visible; transform:translateY(0); }
+  .to-top:hover{ color:var(--hakua); background:var(--sakura); border-color:var(--sakura); }
+
+  /* ---------- 続きを生成デモへのリンク ---------- */
+  .more{ text-align:center; padding-top:9vh; }
+  .more a{
+    display:inline-block;
+    font-family:var(--sans); font-size:.74rem; letter-spacing:.14em;
+    color:var(--sakura); text-decoration:none;
+    border:1px solid var(--sakura-pale); border-radius:999px;
+    padding:.62rem 1.5rem;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .more a:hover{ background:var(--sakura); color:var(--hakua); border-color:var(--sakura); }
+  .lang-en .more a{ letter-spacing:.06em; }
+
+  /* ---------- 桜の花びら（舞い落ちる装飾・SVG／画像素材なし） ---------- */
+  .sakura{
+    position:fixed; inset:0; overflow:hidden;
+    pointer-events:none; z-index:1;
+  }
+  /* 表紙だけ多めに散らす追加レイヤー（表紙内に限定、スクロールで流れる） */
+  .sakura--cover{ position:absolute; z-index:0; }
+  .cover > *:not(.sakura--cover){ position:relative; z-index:1; }
+  @media (prefers-reduced-motion:reduce){ .sakura{ display:none; } }
+  .sakura .petal{
+    position:absolute; top:-14vh;
+    width:var(--s,14px); height:calc(var(--s,14px) * 1.18);
+    animation:petal-fall var(--d,13s) linear infinite;
+    will-change:transform;
+  }
+  .sakura .petal i{
+    display:block; width:100%; height:100%;
+    background:no-repeat center/contain;
+    animation:petal-sway var(--sw,3.6s) ease-in-out infinite alternate;
+  }
+  .sakura .p1 i{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Cpath d='M10 2 C3 6 2 14 6 21 C8 24 9 21 10 20 C11 21 12 24 14 21 C18 14 17 6 10 2 Z' fill='%23f0d3dc'/%3E%3C/svg%3E"); }
+  .sakura .p2 i{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Cpath d='M10 2 C3 6 2 14 6 21 C8 24 9 21 10 20 C11 21 12 24 14 21 C18 14 17 6 10 2 Z' fill='%23e6b3c6'/%3E%3C/svg%3E"); }
+  .sakura .p3 i{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Cpath d='M10 2 C3 6 2 14 6 21 C8 24 9 21 10 20 C11 21 12 24 14 21 C18 14 17 6 10 2 Z' fill='%23f8e7ee'/%3E%3C/svg%3E"); }
+  @keyframes petal-fall{
+    0%{ transform:translateY(-14vh); opacity:0; }
+    10%{ opacity:.5; }
+    90%{ opacity:.5; }
+    100%{ transform:translateY(116vh); opacity:0; }
+  }
+  @keyframes petal-sway{
+    from{ transform:translateX(-11px) rotate(-16deg); }
+    to{ transform:translateX(11px) rotate(196deg); }
+  }
+
+  /* ---------- PDF出力（ブラウザの「印刷 → PDFとして保存」用） ---------- */
+  @media print{
+    @page{ margin:18mm 16mm; }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    html, body{ background:#fff !important; }
+    body{ color:var(--sumi); line-height:1.85; }
+
+    /* 画面専用UIは印刷しない */
+    .lang-switch, .to-top, .scroll-hint, .toc, .more, .sakura{ display:none !important; }
+
+    /* 表紙 */
+    .cover{
+      min-height:auto; padding:26mm 0 14mm;
+      background:#fff !important;
+    }
+    .cover::after{ display:none; }
+    .cover h1{ font-size:24pt; line-height:1.5; }
+    .cast{ font-size:10pt; }
+    .rule{ height:44px; }
+
+    /* 本文 */
+    main{ max-width:none; padding:0; }
+    .chapter{ padding-top:0; page-break-before:always; }
+    .chapter-head{ margin-bottom:14mm; }
+    .chapter-head h2{ font-size:16pt; }
+    .lang-ja p, .lang-en p{ font-size:10.5pt; line-height:1.9; }
+    p{ orphans:2; widows:2; }
+    .break{ page-break-inside:avoid; margin:9mm 0; }
+    .end{ page-break-inside:avoid; }
+    a{ color:inherit; text-decoration:none; }
+  }
+</style>
+</head>
+<body data-lang="ja">
+
+
+<div class="sakura" aria-hidden="true">
+  <span class="petal p1" style="left:4%;  --s:12px; --d:13s; --sw:3.4s; animation-delay:-1s;"><i></i></span>
+  <span class="petal p3" style="left:10%; --s:16px; --d:16s; --sw:4.3s; animation-delay:-7s;"><i></i></span>
+  <span class="petal p2" style="left:16%; --s:11px; --d:11s; --sw:3.0s; animation-delay:-3s;"><i></i></span>
+  <span class="petal p1" style="left:23%; --s:18px; --d:18s; --sw:4.8s; animation-delay:-11s;"><i></i></span>
+  <span class="petal p3" style="left:29%; --s:13px; --d:12s; --sw:3.6s; animation-delay:-5s;"><i></i></span>
+  <span class="petal p2" style="left:36%; --s:15px; --d:15s; --sw:4.1s; animation-delay:-9s;"><i></i></span>
+  <span class="petal p1" style="left:43%; --s:11px; --d:10s; --sw:2.9s; animation-delay:-2s;"><i></i></span>
+  <span class="petal p3" style="left:50%; --s:17px; --d:17s; --sw:4.6s; animation-delay:-13s;"><i></i></span>
+  <span class="petal p2" style="left:57%; --s:12px; --d:12s; --sw:3.3s; animation-delay:-6s;"><i></i></span>
+  <span class="petal p1" style="left:64%; --s:14px; --d:14s; --sw:3.9s; animation-delay:-10s;"><i></i></span>
+  <span class="petal p3" style="left:70%; --s:19px; --d:19s; --sw:5.0s; animation-delay:-4s;"><i></i></span>
+  <span class="petal p2" style="left:76%; --s:11px; --d:11s; --sw:3.1s; animation-delay:-8s;"><i></i></span>
+  <span class="petal p1" style="left:82%; --s:16px; --d:16s; --sw:4.4s; animation-delay:-14s;"><i></i></span>
+  <span class="petal p3" style="left:88%; --s:13px; --d:13s; --sw:3.7s; animation-delay:-3.5s;"><i></i></span>
+  <span class="petal p2" style="left:93%; --s:12px; --d:12s; --sw:3.2s; animation-delay:-12s;"><i></i></span>
+  <span class="petal p1" style="left:97%; --s:15px; --d:15s; --sw:4.2s; animation-delay:-6.5s;"><i></i></span>
+</div>
+
+<div class="lang-switch" role="group" aria-label="言語切替 / Language">
+  <button type="button" data-set-lang="ja" class="is-active">日本語</button>
+  <button type="button" data-set-lang="en">EN</button>
+</div>
+
+<button class="to-top" type="button" aria-label="ページ上部へ / Back to top">↑</button>
+
+<!-- ============================================================ -->
+<!-- 日本語版                                                      -->
+<!-- ============================================================ -->
+<div class="lang-content lang-ja" lang="ja">
+
+<header class="cover">
+  <div class="sakura sakura--cover" aria-hidden="true">
+    <span class="petal p1" style="left:6%;  --s:14px; --d:12s; --sw:3.4s; animation-delay:-2s;"><i></i></span>
+    <span class="petal p3" style="left:15%; --s:18px; --d:15s; --sw:4.4s; animation-delay:-8s;"><i></i></span>
+    <span class="petal p2" style="left:24%; --s:12px; --d:11s; --sw:3.0s; animation-delay:-5s;"><i></i></span>
+    <span class="petal p1" style="left:33%; --s:16px; --d:14s; --sw:4.0s; animation-delay:-10s;"><i></i></span>
+    <span class="petal p3" style="left:42%; --s:13px; --d:12s; --sw:3.6s; animation-delay:-3s;"><i></i></span>
+    <span class="petal p2" style="left:50%; --s:19px; --d:16s; --sw:4.8s; animation-delay:-12s;"><i></i></span>
+    <span class="petal p1" style="left:58%; --s:12px; --d:11s; --sw:3.1s; animation-delay:-6s;"><i></i></span>
+    <span class="petal p3" style="left:66%; --s:17px; --d:15s; --sw:4.5s; animation-delay:-9s;"><i></i></span>
+    <span class="petal p2" style="left:75%; --s:14px; --d:13s; --sw:3.8s; animation-delay:-1.5s;"><i></i></span>
+    <span class="petal p1" style="left:83%; --s:11px; --d:10s; --sw:2.9s; animation-delay:-7s;"><i></i></span>
+    <span class="petal p3" style="left:90%; --s:16px; --d:14s; --sw:4.2s; animation-delay:-11s;"><i></i></span>
+    <span class="petal p2" style="left:96%; --s:13px; --d:12s; --sw:3.5s; animation-delay:-4s;"><i></i></span>
+  </div>
+  <div class="kicker">青春ラブコメディ</div>
+  <h1>桜色メイドは、<br><span class="accent">幼馴染</span>で<span class="accent">許嫁</span>でした。</h1>
+  <div class="rule"></div>
+  <div class="cast">
+    吉原 修平 <span>／</span> 桜庭 紗和<br>
+    朝比奈 美月 <span>／</span> 白石 琴音
+  </div>
+  <nav class="toc" aria-label="目次">
+    <a href="#ja-ch1"><span class="toc-no">一</span>おはようございます、修平様</a>
+    <a href="#ja-ch2"><span class="toc-no">二</span>図書室の三年生</a>
+    <a href="#ja-ch3"><span class="toc-no">三</span>体育祭のスタートライン</a>
+    <a href="#ja-ch4"><span class="toc-no">四</span>修学旅行の夜</a>
+    <a href="#ja-ch5"><span class="toc-no">五</span>別に、あんたのためじゃないから</a>
+    <a href="#ja-ch6"><span class="toc-no">六</span>文化祭の、いちばん静かな場所</a>
+    <a href="#ja-ch7"><span class="toc-no">七</span>約束のかたち</a>
+  </nav>
+  <div class="scroll-hint">SCROLL</div>
+</header>
+
+<main>
+
+  <!-- 第一章 -->
+  <section class="chapter" id="ja-ch1">
+    <div class="chapter-head">
+      <div class="chapter-num">第 一 章</div>
+      <h2>おはようございます、修平様</h2>
+      <div class="pov">吉原 修平</div>
+    </div>
+
+    <p class="indent">朝の光がカーテンの隙間から差し込むより先に、俺の一日は決まって同じ声で始まる。</p>
+    <p class="indent">「修平様、おはようございます。今日も素敵な一日になりますように」</p>
+    <p class="indent">目を開けると、桜庭紗和がベッドの脇に膝をついて、こちらを覗き込んでいた。真っ白なエプロンに、皺ひとつないカチューシャ。長い栗色の髪が肩から流れ落ちて、朝の光を柔らかく散らしている。</p>
+    <p class="indent">「……紗和。何度も言ってるけど、その『様』はやめてくれ」</p>
+    <p class="indent">「いけません。わたし、メイド見習いですから」</p>
+    <p class="indent">紗和はにっこりと笑う。この笑顔に、俺は昔から一度も勝てたためしがない。</p>
+    <p class="indent">吉原の家は、まあ、世間的には裕福な部類に入るらしい。だが俺自身は、高い車にも広い庭にも興味がなくて、学校では窓際の席で本を読んでいるような、そういうつまらない生き方をしている。派手なことは苦手だ。目立つのも苦手だ。</p>
+    <p class="indent">そんな俺の生活の、静かすぎる真ん中に、この人はいつもいる。</p>
+    <p class="indent">桜庭紗和、十八歳。俺の一つ年上の幼馴染で――そして、許嫁だ。</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">階段を降りると、ダイニングにはもう朝食が並んでいた。焼き加減の完璧な卵焼き。味噌汁からは湯気。皿の配置まで定規で測ったみたいに整っている。</p>
+    <p class="indent">「今日の卵焼き、三回作り直したんです」</p>
+    <p class="indent">紗和が誇らしげに胸を張った。</p>
+    <p class="indent">「……三回?」</p>
+    <p class="indent">「一回目は焦がして、二回目は……その、フライパンごと落としてしまって」</p>
+    <p class="indent">「怪我は」</p>
+    <p class="indent">俺が食べるより先にそう聞いたら、紗和は一瞬、きょとんとした顔をした。それから、ゆっくりと目を細めて笑った。</p>
+    <p class="indent">「……修平様は、いつもそれですね」</p>
+    <p class="indent">「それって何だよ」</p>
+    <p class="indent">「わたしの失敗の話をすると、必ず先に、わたしの心配をしてくださる」</p>
+    <p class="indent">紗和は俺の隣に立ったまま、両手を前で重ねた。メイドの姿勢だ。でも、その頬がほんの少し赤いのは、たぶんキッチンの熱のせいじゃない。</p>
+    <p class="indent">「大丈夫です。ちゃんと、一人前になりますから」</p>
+    <p class="indent">彼女は正式なメイドになるために修行中で、そのくせ本人は絶望的にドジで、天然で、それでも誰よりも真面目だ。文武両道で、努力を怠らなくて、なのに時々こうして、年上らしい包容力で俺を振り回していく。</p>
+    <p class="indent">卵焼きを口に運ぶ。甘い。少し、甘すぎるくらいだ。</p>
+    <p class="indent">「うまい」</p>
+    <p class="indent">その一言で、紗和の顔がぱっと桜色に染まった。</p>
+    <p class="indent">――俺たちの間には、幼い頃に大人たちが結んだ約束がある。約束は、確かにそこにある。</p>
+    <p class="indent">でも約束は、恋とは違う。</p>
+    <p class="indent">それを俺は、まだ言葉にできずにいた。</p>
+  </section>
+
+  <!-- 第二章 -->
+  <section class="chapter" id="ja-ch2">
+    <div class="chapter-head">
+      <div class="chapter-num">第 二 章</div>
+      <h2>図書室の三年生</h2>
+      <div class="pov">朝比奈 美月</div>
+    </div>
+
+    <p class="indent">放課後の図書室は、わたしの一番好きな場所だ。</p>
+    <p class="indent">窓から入る西日が本棚の背表紙を金色に染めて、ページをめくる音だけが時々鳴る。星空や夜の静かな時間が好きなわたしにとって、ここは昼間にある唯一の「静けさ」だった。</p>
+    <p class="indent">その静けさの中に、吉原くんはいつもいる。</p>
+    <p class="indent">「朝比奈先輩。この本、返しに来ました」</p>
+    <p class="indent">「うん。……えっ、もう読み終わったの? 昨日貸したばかりなのに」</p>
+    <p class="indent">「面白かったので」</p>
+    <p class="indent">彼はそれだけ言って、少し照れたように目を逸らす。吉原修平くん。紗和の許嫁で、二年生で、口数が少なくて、誠実な人。</p>
+    <p class="indent">最初はただ、親友の大切な人だから、見守るつもりだった。ほんとうに、それだけのつもりだったのに。</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">「紗和ね、今朝も卵焼きを三回作り直したって、お昼にすごく嬉しそうに話してたよ」</p>
+    <p class="indent">わたしがそう言うと、吉原くんは本を棚に戻す手を止めた。</p>
+    <p class="indent">「……あいつ、そんなことまで先輩に話してるんですか」</p>
+    <p class="indent">「うん、それはもう毎日。『修平様が美味しいって言ってくださいました』って」</p>
+    <p class="indent">「うわ」</p>
+    <p class="indent">彼が本気で困った顔をするので、わたしは思わず笑ってしまった。</p>
+    <p class="indent">紗和はいつも、この人の話をする。お弁当を食べながら、試験前の図書室で、参考書の隙間から。彼女が「修平様が」と言うときの声は、砂糖菓子みたいに甘くて、聞いているこっちが恥ずかしくなるほどだ。だからわたしは、いつもからかう。</p>
+    <p class="indent">――そのはずだったのに。</p>
+    <p class="indent">「先輩」</p>
+    <p class="indent">「はい?」</p>
+    <p class="indent">「先輩、指」</p>
+    <p class="indent">吉原くんが、わたしの右手を見ていた。人差し指の先に、小さな絆創膏。</p>
+    <p class="indent">「あ、これ? 昨日チーズケーキを焼いたときに、ちょっとだけね」</p>
+    <p class="indent">「痛くないですか」</p>
+    <p class="indent">静かな声だった。心配しているのを悟られたくない人の、そういう声だった。</p>
+    <p class="indent">胸の奥が、ことん、と鳴った。</p>
+    <p class="indent">――ああ、これだ。紗和が毎日話しているのは、この瞬間のことなんだ。</p>
+    <p class="indent">この人は、失敗の話をすると、必ず先に人の心配をする。それは彼にとってきっと、呼吸みたいに当たり前のことで、特別でもなんでもない。</p>
+    <p class="indent">わたしにとっては、特別だった。</p>
+    <p class="indent">「……大丈夫だよ。ありがとう」</p>
+    <p class="indent">自分の声が少し掠れていることに、わたしは気づかないふりをした。気づいてしまったら、それが何なのか、名前をつけなくてはいけなくなる。</p>
+    <p class="indent">窓の外で、風が鳴っていた。</p>
+    <p class="indent">わたしは、紗和の一番の親友だ。</p>
+    <p class="indent">それだけで、いいはずだった。</p>
+  </section>
+
+  <!-- 第三章 -->
+  <section class="chapter" id="ja-ch3">
+    <div class="chapter-head">
+      <div class="chapter-num">第 三 章</div>
+      <h2>体育祭のスタートライン</h2>
+      <div class="pov">白石 琴音</div>
+    </div>
+
+    <p class="indent">体育祭の朝は、空が憎らしいくらいに青かった。</p>
+    <p class="indent">あたしは一年三組のリレー、アンカー。つまり最後の一走。クラスの勝ち負けが全部あたしの足にかかってるってわけで、朝からずっと胃のあたりがそわそわしている。</p>
+    <p class="indent">「白石、これ」</p>
+    <p class="indent">ふいに差し出されたのは、冷たいスポーツドリンクだった。顔を上げると、吉原先輩が立っている。二年の徒競走はもう終わったらしい。</p>
+    <p class="indent">「べ、別に喉なんて渇いてないし」</p>
+    <p class="indent">言ってから、自分の口の減らなさが心底いやになる。だって本当は、朝から緊張で水も飲めてなかったのに。</p>
+    <p class="indent">「そうか。じゃあ置いとく」</p>
+    <p class="indent">先輩はそれだけ言って、あたしの足元にそっとボトルを置いた。押しつけない。理由も聞かない。……ずるい。この人はいつもそうだ。</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">バトンが回ってきた瞬間、頭の中が真っ白になった。</p>
+    <p class="indent">走る。ただ走る。風が耳の横で鳴って、応援の声が遠くなる。前を行く二組の背中が、少しずつ近づいて――そこで、あたしの足はもつれた。</p>
+    <p class="indent">あ、やっちゃった。</p>
+    <p class="indent">派手に転んで、膝が地面を擦った。それでもあたしは立ち上がって、バトンだけは握りしめたまま、最後までゴールに飛び込んだ。順位なんて、正直よく覚えていない。</p>
+    <p class="indent">息を切らしてうずくまっていると、真っ先に駆け寄ってきたのは先輩だった。</p>
+    <p class="indent">「膝、見せろ。血が出てる」</p>
+    <p class="indent">順位でも、タイムでもなかった。この人が最初に口にするのは、いつだってあたしの心配だ。</p>
+    <p class="indent">「……たいしたことない、です」</p>
+    <p class="indent">「たいしたことあるだろ。保健室、行くぞ」</p>
+    <p class="indent">差し出された手を、あたしはしばらく見つめていた。取ったら負けだって、心のどこかで思ってるのに。</p>
+    <p class="indent">「……ありがと。ちゃんと、見ててくれたんですね」</p>
+    <p class="indent">ぽつりとこぼれた本音に、先輩は少しだけ目を見開いて、それから小さく笑った。その笑い方が、なんだか妙に、頭から離れない。</p>
+    <p class="indent">保健室へ向かう背中を追いかけながら、あたしはまだ、自分のこの気持ちに名前をつけられずにいた。ただ、青すぎる空がやけに眩しくて――胸の奥が、ちりちりと、落ち着かなかった。</p>
+  </section>
+
+  <!-- 第四章 -->
+  <section class="chapter" id="ja-ch4">
+    <div class="chapter-head">
+      <div class="chapter-num">第 四 章</div>
+      <h2>修学旅行の夜</h2>
+      <div class="pov">桜庭 紗和</div>
+    </div>
+
+    <p class="indent">旅先の街は、夕暮れになると提灯の灯りで橙色に染まりました。</p>
+    <p class="indent">修学旅行の自由時間。わたしは今日、エプロンもカチューシャも身につけていません。ただの生徒として、修平様の少し後ろを歩いています。それが、なんだかとても新鮮で、少しだけくすぐったいのです。</p>
+    <p class="indent">「紗和、そんなに端を歩くと危ないぞ」</p>
+    <p class="indent">「はい。……あの、修平様。わたし、お土産にこの湯呑みを、と思いまして」</p>
+    <p class="indent">手に取った藍色の湯呑みを見せようとした、そのときでした。人とすれ違った拍子に手が滑って、湯呑みが宙に浮いて――。</p>
+    <p class="indent">「あっ」</p>
+    <p class="indent">とっさに伸びてきた手が、それを受け止めてくれました。修平様の手のひらの中で、湯呑みは無事でした。</p>
+    <p class="indent">「怪我は」</p>
+    <p class="indent">割れた湯呑みでも、お土産のことでもなく。修平様がいちばん先に聞いてくださるのは、いつも決まってわたしのことです。</p>
+    <p class="indent">「……大丈夫です。相変わらず、ドジで、ごめんなさい」</p>
+    <p class="indent">「べつに。無事ならいい」</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">夜、旅館の縁側で、わたしたちは並んで座っていました。庭の向こうで、虫の声がしています。</p>
+    <p class="indent">「なあ、紗和」</p>
+    <p class="indent">「はい」</p>
+    <p class="indent">「メイド服じゃないお前も……その、悪くないな」</p>
+    <p class="indent">ぶっきらぼうな声でしたが、わたしはうつむいてしまいました。きっと、耳まで赤くなっているのが、灯りでばれてしまいます。</p>
+    <p class="indent">「……ありがとうございます。わたし、メイド見習いとしてはまだ半人前ですけれど……こうして、ただの桜庭紗和として修平様のおそばにいられる時間も、本当は、とても大切にしているんです」</p>
+    <p class="indent">言ってしまってから、急に恥ずかしくなって、わたしは膝の上で両手を重ねました。</p>
+    <p class="indent">修平様は、何かを言いかけて――けれど、その続きを飲み込んでしまいました。かわりに、少しぶっきらぼうに前を向いて、ぽつりとこぼしました。</p>
+    <p class="indent">「……いや。なんでもない」</p>
+    <p class="indent">その横顔が、何を言いかけたのか。わたしには分かりませんでした。分からないふりを、したのかもしれません。</p>
+    <p class="indent">幼い頃に交わした約束は、確かにここにあります。けれど、約束と、恋は違う。修平様の飲み込んだ言葉の中に、その違いの答えがある気がして――わたしはただ、虫の声を聞いていました。</p>
+    <p class="indent">いつか、その続きを聞ける日が来るでしょうか。今はまだ、そっと胸にしまっておくことにします。</p>
+  </section>
+
+  <!-- 第五章 -->
+  <section class="chapter" id="ja-ch5">
+    <div class="chapter-head">
+      <div class="chapter-num">第 五 章</div>
+      <h2>別に、あんたのためじゃないから</h2>
+      <div class="pov">白石 琴音</div>
+    </div>
+
+    <p class="indent">文化祭の準備期間は、廊下がうるさくてキライだ。</p>
+    <p class="indent">段ボールと絵の具と、みんなのはしゃぐ声。一年の教室から資材を運ぶ係になったあたしは、腕いっぱいに木材を抱えて廊下を歩いていた。</p>
+    <p class="indent">「あっ」</p>
+    <p class="indent">足が滑った。視界が傾いて、木材が宙に散る。あー、またやっちゃった。あたし、ほんとにドジなんだ。</p>
+    <p class="indent">床にぶつかる覚悟をした瞬間、腕を引かれた。</p>
+    <p class="indent">「危ない」</p>
+    <p class="indent">気づいたら、木材は全部その人の腕の中で、あたしはその人の隣に立っていた。</p>
+    <p class="indent">二年の、吉原先輩。</p>
+    <p class="indent">「べ、別に助けてなんて頼んでないし! あ、あんた……じゃなくて、先輩、勝手に手ぇ出さないでくださいっ」</p>
+    <p class="indent">口が勝手に動いた。素直じゃない、ってよく言われる。分かってる。分かってるけど、止まらない。</p>
+    <p class="indent">「そうか」</p>
+    <p class="indent">先輩は怒りもせず、木材を持ち直しただけだった。</p>
+    <p class="indent">「教室、どこ?」</p>
+    <p class="indent">「……一年三組」</p>
+    <p class="indent">「じゃあ半分持つ」</p>
+    <p class="indent">それだけ。理由も聞かない。恩着せがましくもない。あたしがツンツンしても、この人はまるで気にしない。</p>
+    <p class="indent">なにそれ。ずるい。</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">「先輩って、桜庭先輩の許嫁なんですよね」</p>
+    <p class="indent">歩きながら聞いた。廊下の窓から、夕日が斜めに入ってくる。</p>
+    <p class="indent">「……よく知ってるな」</p>
+    <p class="indent">「学校中の噂ですよ、そんなの。金持ちのお坊ちゃんと、メイドの幼馴染。少女漫画かって」</p>
+    <p class="indent">「勘弁してくれ」</p>
+    <p class="indent">先輩の耳が、ちょっと赤くなった。あ、可愛い。……じゃなくて。</p>
+    <p class="indent">「先輩は、桜庭先輩のこと好きなんですか」</p>
+    <p class="indent">聞いてから、あたしは自分の心臓がうるさいことに気づいた。なんであたし、こんなこと聞いてるんだろ。答えなんて、どうせ決まってるのに。</p>
+    <p class="indent">先輩は、少し黙った。長い沈黙だった。</p>
+    <p class="indent">「……分からない」</p>
+    <p class="indent">「はぁ?」</p>
+    <p class="indent">「あいつが大事なのは分かる。でもそれが、決められた約束のせいなのか、俺自身がそう思ってるのか。それが分からないうちは、好きだなんて言ったら、あいつに失礼だろ」</p>
+    <p class="indent">――あたしは、その場で立ち止まってしまった。</p>
+    <p class="indent">なんだよそれ。不器用すぎるでしょ。こんなの、真面目すぎて、バカみたいで。</p>
+    <p class="indent">「……先輩、それ、ちゃんと桜庭先輩に言ったんですか」</p>
+    <p class="indent">「言えるわけないだろ」</p>
+    <p class="indent">「言いなよ!」</p>
+    <p class="indent">気づいたら、廊下に響くくらいの声が出ていた。先輩がびっくりした顔でこっちを見る。</p>
+    <p class="indent">「……っ、べ、別に、先輩のために言ってるんじゃないんだからね! ただ、あんな優しい人を待たせてるの、見てて腹立つだけ!」</p>
+    <p class="indent">木材を抱え直して、あたしは先を歩いた。顔が熱い。絶対、見られたくない。</p>
+    <p class="indent">背中で、先輩の声がした。</p>
+    <p class="indent">「白石」</p>
+    <p class="indent">「なんですか」</p>
+    <p class="indent">「ありがとな」</p>
+    <p class="indent">「……っ」</p>
+    <p class="indent">足が止まりそうになるのを、必死でこらえた。</p>
+    <p class="indent">――ふんっ、そんなことで喜ぶわけないし。</p>
+    <p class="indent">……なんて、思えたらよかったのに。ちゃんと見ててくれたんだ、なんて。あんたと一緒にいると、なんか安心するな、なんて。</p>
+    <p class="indent">ずるい。ほんと、この人は。</p>
+    <p class="indent">あたしの負けだ。とっくに、負けてる。</p>
+  </section>
+
+  <!-- 第六章 -->
+  <section class="chapter" id="ja-ch6">
+    <div class="chapter-head">
+      <div class="chapter-num">第 六 章</div>
+      <h2>文化祭の、いちばん静かな場所</h2>
+      <div class="pov">吉原 修平</div>
+    </div>
+
+    <p class="indent">文化祭当日。校舎はお祭り騒ぎで、俺はやっぱり、その真ん中が苦手だった。</p>
+    <p class="indent">屋上へ続く階段の踊り場。ここだけが静かで、俺の避難場所だった。</p>
+    <p class="indent">「見つけた」</p>
+    <p class="indent">最初に来たのは、朝比奈先輩だった。手には紙コップが二つ。</p>
+    <p class="indent">「はい、紅茶。三年の模擬店のだよ。……人混み、苦手でしょ?」</p>
+    <p class="indent">「よく分かりましたね」</p>
+    <p class="indent">「見てれば分かるよ」</p>
+    <p class="indent">先輩は俺の隣に座って、紅茶を一口飲んだ。しばらく、二人とも黙っていた。下の階から、吹奏楽部の音が遠く聞こえていた。</p>
+    <p class="indent">「吉原くん」</p>
+    <p class="indent">「はい」</p>
+    <p class="indent">「紗和はね、吉原くんが思ってるより、ずっと強いんだよ」</p>
+    <p class="indent">先輩は前を向いたまま言った。横顔が、少し寂しそうだった。</p>
+    <p class="indent">「あの子、毎日わたしに吉原くんの話をするの。ちゃんと待てるくらい、吉原くんのこと信じてる。……だから、あんまり待たせちゃ、だめだよ」</p>
+    <p class="indent">「先輩」</p>
+    <p class="indent">「わたしはね」</p>
+    <p class="indent">言いかけて、彼女は言葉を飲み込んだ。そして、いつもの穏やかな笑顔に戻した。</p>
+    <p class="indent">「……わたしは、紗和の親友だからね。ちゃんと、背中を押す役だよ」</p>
+    <p class="indent">その笑顔が何を隠しているのか、そのときの俺には分からなかった。分からないふりをしたのかもしれない。</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">先輩と入れ替わりに、階段を駆け上がってきたのは白石だった。</p>
+    <p class="indent">「先輩! こんなとこにいた! ……はい、これ」</p>
+    <p class="indent">押し付けられたのは、オムライスのパック。</p>
+    <p class="indent">「うちのクラスの、余りものだから! 別にわざわざ持ってきたわけじゃないから!」</p>
+    <p class="indent">「……余りものなら、なんでこんなに綺麗に盛られてるんだ」</p>
+    <p class="indent">「うるさいっ!」</p>
+    <p class="indent">顔を真っ赤にして、白石は階段の手すりに寄りかかった。それから、ぼそっと言った。</p>
+    <p class="indent">「……桜庭先輩、来てますよ。中庭で、先輩のこと探してた」</p>
+    <p class="indent">「紗和が?」</p>
+    <p class="indent">「今日、あの人、制服なんです。メイド服じゃなくて」</p>
+    <p class="indent">白石はそっぽを向いたまま続けた。</p>
+    <p class="indent">「あたし、ちょっと分かっちゃったんですよね。あの人、今日だけは『メイド』じゃなくて、先輩の隣を歩きたいんだなって」</p>
+    <p class="indent">「…………」</p>
+    <p class="indent">「行かないんですか」</p>
+    <p class="indent">白石が、初めてこっちを真っ直ぐ見た。エメラルドグリーンの瞳が、少しだけ潤んでいた。</p>
+    <p class="indent">「行かないなら、あたし――」</p>
+    <p class="indent">その先を、彼女は言わなかった。代わりに、力いっぱい俺の背中を叩いた。</p>
+    <p class="indent">「早く行きなよ、バカ先輩!」</p>
+    <p class="indent">俺は走り出した。</p>
+    <p class="indent">背中に、まだ手のひらの熱が残っていた。</p>
+  </section>
+
+  <!-- 第七章 -->
+  <section class="chapter" id="ja-ch7">
+    <div class="chapter-head">
+      <div class="chapter-num">第 七 章</div>
+      <h2>約束のかたち</h2>
+      <div class="pov">吉原 修平</div>
+    </div>
+
+    <p class="indent">中庭の桜は、秋だから当然、花なんてつけていない。それでも紗和は、その木の下に立っていた。</p>
+    <p class="indent">制服姿の紗和は、なんだか知らない人みたいだった。エプロンもカチューシャもない。ただの、十八歳の女の子だった。</p>
+    <p class="indent">「修平様」</p>
+    <p class="indent">彼女が俺を見つけて、ぱっと顔を輝かせる。</p>
+    <p class="indent">「探しました。人が多くて、迷ってしまって……。あの、わたし、屋台のたこ焼きを買おうとして、お財布を落として、拾ってくださった方にお礼を言おうとしたら、その方も転んでしまって……」</p>
+    <p class="indent">「相変わらずだな」</p>
+    <p class="indent">「……ごめんなさい。わたし、まだまだですね」</p>
+    <p class="indent">紗和がしゅんと肩を落とす。俺は息を整えて、それから、ずっと言えなかったことを口にした。</p>
+    <p class="indent">「紗和。俺、ずっと考えてたんだ」</p>
+    <p class="indent">「はい?」</p>
+    <p class="indent">「俺がお前を大事に思うのは、親父たちが決めた約束のせいなんじゃないかって。そうだったら、お前に失礼だろ。だから、好きだって言う資格が、俺にはないと思ってた」</p>
+    <p class="indent">紗和が目を丸くする。秋の風が、彼女の長い髪を揺らした。</p>
+    <p class="indent">「でも、さっき分かった」</p>
+    <p class="indent">「……なにが、ですか」</p>
+    <p class="indent">「お前が制服で来たって聞いた瞬間、俺、走ってた。約束のことなんか、一秒も考えなかった」</p>
+    <p class="indent">言葉にすると、こんなに単純なことだった。</p>
+    <p class="indent">「メイドの紗和じゃなくて。許嫁の紗和でもなくて。ただの桜庭紗和が、会いに来てくれたんだと思ったら、俺、走ってた」</p>
+    <p class="indent">紗和は、しばらく何も言わなかった。</p>
+    <p class="indent">それから、両手で顔を覆った。指の隙間から、耳まで真っ赤なのが見えた。</p>
+    <p class="indent">「……ずるいです」</p>
+    <p class="indent">「え」</p>
+    <p class="indent">「わたし、今日のために三日も悩んで、制服を選んで、髪も三回結び直して……。修平様が気づいてくださらなかったら、それでもいいと思ってたのに」</p>
+    <p class="indent">顔を上げた紗和は、泣きそうな顔で、それでも笑っていた。</p>
+    <p class="indent">「そんなふうに言われたら、わたし、もう」</p>
+    <p class="indent">「紗和」</p>
+    <p class="indent">俺は、彼女の名前を呼んだ。「様」も「お嬢様」も何もない、ただの名前を。</p>
+    <p class="indent">「約束じゃなくて、俺が選びたい。……時間、くれるか」</p>
+    <p class="indent">紗和は、ゆっくりと、深く頷いた。</p>
+    <p class="indent">「はい。何年でも」</p>
+    <p class="indent">それから、いつもの――あの、俺が一度も勝てたためしのない笑顔で、こう続けた。</p>
+    <p class="indent">「だって、わたし。誰よりも修平様のことを想っていますから」</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p class="indent">校舎の窓から、朝比奈先輩がこっちを見ていた。目が合うと、彼女は小さく手を振って、それから静かにカーテンを閉めた。</p>
+    <p class="indent">中庭の隅では、白石が「あー! もう! 見てらんない!」と叫びながら、なぜか自分の頬を両手で叩いていた。</p>
+    <p class="indent">花のない桜の木の下で、俺たちは並んで立っていた。</p>
+    <p class="indent">来年の春には、この木もまた桜色になる。</p>
+    <p class="indent">そのとき、俺たちがどうなっているのかは、まだ分からない。三人の想いがどこへ向かうのかも、分からない。</p>
+    <p class="indent">それでも、たしかなことが一つだけある。</p>
+    <p class="indent">幼い頃に結ばれた約束は、今日、たしかに――少しだけ、恋のかたちに変わったのだ。</p>
+
+    <div class="end">了</div>
+  </section>
+
+  <div class="more">
+    <a href="#demo">✿ 続きをAIに書いてもらう（執筆デモ）</a>
+  </div>
+
+</main>
+</div><!-- /.lang-ja -->
+
+<!-- ============================================================ -->
+<!-- English version                                              -->
+<!-- ============================================================ -->
+<div class="lang-content lang-en" lang="en">
+
+<header class="cover">
+  <div class="sakura sakura--cover" aria-hidden="true">
+    <span class="petal p1" style="left:6%;  --s:14px; --d:12s; --sw:3.4s; animation-delay:-2s;"><i></i></span>
+    <span class="petal p3" style="left:15%; --s:18px; --d:15s; --sw:4.4s; animation-delay:-8s;"><i></i></span>
+    <span class="petal p2" style="left:24%; --s:12px; --d:11s; --sw:3.0s; animation-delay:-5s;"><i></i></span>
+    <span class="petal p1" style="left:33%; --s:16px; --d:14s; --sw:4.0s; animation-delay:-10s;"><i></i></span>
+    <span class="petal p3" style="left:42%; --s:13px; --d:12s; --sw:3.6s; animation-delay:-3s;"><i></i></span>
+    <span class="petal p2" style="left:50%; --s:19px; --d:16s; --sw:4.8s; animation-delay:-12s;"><i></i></span>
+    <span class="petal p1" style="left:58%; --s:12px; --d:11s; --sw:3.1s; animation-delay:-6s;"><i></i></span>
+    <span class="petal p3" style="left:66%; --s:17px; --d:15s; --sw:4.5s; animation-delay:-9s;"><i></i></span>
+    <span class="petal p2" style="left:75%; --s:14px; --d:13s; --sw:3.8s; animation-delay:-1.5s;"><i></i></span>
+    <span class="petal p1" style="left:83%; --s:11px; --d:10s; --sw:2.9s; animation-delay:-7s;"><i></i></span>
+    <span class="petal p3" style="left:90%; --s:16px; --d:14s; --sw:4.2s; animation-delay:-11s;"><i></i></span>
+    <span class="petal p2" style="left:96%; --s:13px; --d:12s; --sw:3.5s; animation-delay:-4s;"><i></i></span>
+  </div>
+  <div class="kicker">A Youth Romantic Comedy</div>
+  <h1>The Cherry-Blossom Maid Was My <span class="accent">Childhood Friend</span> — and My <span class="accent">Betrothed</span>.</h1>
+  <div class="rule"></div>
+  <div class="cast">
+    Shuhei Yoshihara <span>／</span> Sawa Sakuraba<br>
+    Mizuki Asahina <span>／</span> Kotone Shiraishi
+  </div>
+  <nav class="toc" aria-label="Contents">
+    <a href="#en-ch1"><span class="toc-no">I</span>Good Morning, Master Shuhei</a>
+    <a href="#en-ch2"><span class="toc-no">II</span>The Third-Year in the Library</a>
+    <a href="#en-ch3"><span class="toc-no">III</span>The Starting Line at Sports Day</a>
+    <a href="#en-ch4"><span class="toc-no">IV</span>The Night of the School Trip</a>
+    <a href="#en-ch5"><span class="toc-no">V</span>It's Not Like I Did It for You or Anything</a>
+    <a href="#en-ch6"><span class="toc-no">VI</span>The Quietest Place at the Festival</a>
+    <a href="#en-ch7"><span class="toc-no">VII</span>The Shape of a Promise</a>
+  </nav>
+  <div class="scroll-hint">SCROLL</div>
+</header>
+
+<main>
+
+  <!-- Chapter One -->
+  <section class="chapter" id="en-ch1">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter One</div>
+      <h2>Good Morning, Master Shuhei</h2>
+      <div class="pov">Shuhei Yoshihara</div>
+    </div>
+
+    <p>Every day of my life begins the same way — with her voice, arriving even before the morning light slips through the curtains.</p>
+    <p>"Good morning, Master Shuhei. May today be a wonderful day for you."</p>
+    <p>I open my eyes to find Sawa Sakuraba kneeling beside my bed, peering down at me. A spotless white apron. A perfectly pressed headdress. Her long chestnut hair spills over her shoulders, scattering the morning light into something soft.</p>
+    <p>"...Sawa. How many times do I have to tell you to drop the 'Master'?"</p>
+    <p>"I mustn't. I am a maid-in-training, after all."</p>
+    <p>She smiles. I have never once, in my entire life, won against that smile.</p>
+    <p>The Yoshihara family is, by most standards, wealthy. But I've never cared for expensive cars or sprawling gardens. At school I'm the boring kind of guy who reads by the window and tries not to be noticed. I'm bad with flashy things. Bad with attention.</p>
+    <p>And in the very center of my too-quiet life, she is always there.</p>
+    <p>Sawa Sakuraba, eighteen years old. My childhood friend, one year my senior — and my betrothed.</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p>When I came down the stairs, breakfast was already on the table. A rolled omelet cooked to perfection. Steam rising from the miso soup. Every dish arranged as if she'd measured the spacing with a ruler.</p>
+    <p>"I remade the omelet three times this morning," Sawa announced, puffing out her chest with pride.</p>
+    <p>"...Three times?"</p>
+    <p>"The first one burned, and the second... um. I dropped it. Frying pan and all."</p>
+    <p>"Are you hurt?"</p>
+    <p>I asked before I even picked up my chopsticks. Sawa blinked at me, caught off guard. Then, slowly, her eyes softened into a smile.</p>
+    <p>"...You always do that, Master Shuhei."</p>
+    <p>"Do what?"</p>
+    <p>"Whenever I tell you about my failures, the first thing you do is worry about me."</p>
+    <p>She stood beside me, hands folded neatly in front of her apron — perfect maid posture. But the faint pink in her cheeks probably wasn't from the heat of the kitchen.</p>
+    <p>"I'm all right. I will become a proper maid, I promise."</p>
+    <p>She's training to become the Yoshihara family's official maid, and yet she is hopelessly clumsy, hopelessly airheaded — and more earnest than anyone I know. Good at her studies, good at sports, never cutting a single corner. And then, at moments like this, she turns that gentle, big-sisterly warmth on me, and I'm helpless all over again.</p>
+    <p>I took a bite of the omelet. Sweet. Maybe a little too sweet.</p>
+    <p>"It's good."</p>
+    <p>At that single word, her whole face bloomed the color of cherry blossoms.</p>
+    <p>— Between us stands a promise our parents made when we were small. The promise is real. It has always been there.</p>
+    <p>But a promise is not the same thing as love.</p>
+    <p>And I still didn't know how to put that into words.</p>
+  </section>
+
+  <!-- Chapter Two -->
+  <section class="chapter" id="en-ch2">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter Two</div>
+      <h2>The Third-Year in the Library</h2>
+      <div class="pov">Mizuki Asahina</div>
+    </div>
+
+    <p>The library after school is my favorite place in the world.</p>
+    <p>The westering sun turns the spines of the books gold, and the only sound is the occasional whisper of a turning page. For someone like me, who loves starry skies and the quiet hours of the night, this room is the one piece of "silence" the daytime has to offer.</p>
+    <p>And inside that silence, he is always there.</p>
+    <p>"Asahina-senpai. I came to return this."</p>
+    <p>"Oh — wait, you finished it already? I only lent it to you yesterday."</p>
+    <p>"It was good, so."</p>
+    <p>That's all he says before glancing away, faintly embarrassed. Shuhei Yoshihara. Sawa's betrothed. A second-year. A boy of few words, and honest ones.</p>
+    <p>At first, I only meant to watch over him — because he was precious to my best friend. That was all it was supposed to be. Truly.</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p>"You know, Sawa told me at lunch — all sparkly-eyed — that she remade your omelet three times this morning."</p>
+    <p>Yoshihara-kun's hand stopped halfway to the shelf.</p>
+    <p>"...She tells you things like that?"</p>
+    <p>"Mm-hm. Every single day. 'Master Shuhei said it was delicious,' she says."</p>
+    <p>"Oh no."</p>
+    <p>He looked so genuinely mortified that I couldn't help laughing.</p>
+    <p>Sawa talks about him constantly. Over lunch boxes, in the library before exams, from behind a stack of reference books. When she says "Master Shuhei," her voice goes sweet as spun sugar — sweet enough to make the listener blush on her behalf. So I tease her. That's my role.</p>
+    <p>— Or it was supposed to be.</p>
+    <p>"Senpai."</p>
+    <p>"Hm?"</p>
+    <p>"Your finger."</p>
+    <p>He was looking at my right hand. At the small bandage wrapped around my fingertip.</p>
+    <p>"Ah, this? I baked a cheesecake yesterday and slipped a little, that's all."</p>
+    <p>"Does it hurt?"</p>
+    <p>His voice was quiet. The voice of someone who doesn't want you to notice he's worried.</p>
+    <p>Something in my chest went — knock.</p>
+    <p>— Oh. So this is it. This is the moment Sawa talks about every single day.</p>
+    <p>When you tell him about a failure, the first thing he does is worry about you. To him it must be as ordinary as breathing. Nothing special at all.</p>
+    <p>To me, it was special.</p>
+    <p>"...I'm fine. Thank you."</p>
+    <p>My voice came out slightly hoarse, and I pretended not to notice. Because if I noticed, I would have to give the feeling a name.</p>
+    <p>Outside the window, the wind was singing.</p>
+    <p>I am Sawa's best friend.</p>
+    <p>That was supposed to be enough.</p>
+  </section>
+
+  <!-- Chapter Three -->
+  <section class="chapter" id="en-ch3">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter Three</div>
+      <h2>The Starting Line at Sports Day</h2>
+      <div class="pov">Kotone Shiraishi</div>
+    </div>
+
+    <p>The morning of sports day, the sky was an almost spiteful shade of blue.</p>
+    <p>I'm the anchor for the Class 1-3 relay. The last leg. The whole class's win or loss rides on my legs, and my stomach's been in knots since morning.</p>
+    <p>"Shiraishi. Here."</p>
+    <p>A cold sports drink, held out to me. I look up — Yoshihara-senpai. The second-years' sprints must be over.</p>
+    <p>"I— it's not like I'm even thirsty or anything!"</p>
+    <p>The second it's out of my mouth I hate how it won't quit. When the truth is I've been too nervous to drink a thing all morning.</p>
+    <p>"Okay. I'll leave it here, then."</p>
+    <p>That's all he says, setting the bottle down by my feet. No pushing. No asking why. ...Unfair. He's always like this.</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p>The instant the baton hit my hand, my mind went white.</p>
+    <p>Run. Just run. The wind roars past my ears, the cheering falls away. The back of the runner ahead creeps closer — and there, my feet tangled.</p>
+    <p>Ah. I did it again.</p>
+    <p>I went down hard, scraping my knee on the track. But I got up, and with the baton still clenched in my fist, I threw myself across the finish line. I honestly don't remember what place we came in.</p>
+    <p>Gasping, curled on the ground, the first one to reach me was senpai.</p>
+    <p>"Your knee — let me see. It's bleeding."</p>
+    <p>Not the placing. Not the time. The first thing this person says is always about me.</p>
+    <p>"...It's nothing, really."</p>
+    <p>"It's clearly not nothing. Come on — infirmary."</p>
+    <p>I stared at the hand he held out for a while. Even though taking it means I lose, somewhere in my heart.</p>
+    <p>"...Thanks. So you really were watching."</p>
+    <p>At the honest words that slipped out, senpai's eyes widened a little, and then he smiled, small. And somehow, that smile just wouldn't leave my head.</p>
+    <p>Trailing after him toward the infirmary, I still couldn't put a name to this feeling. Only that the too-blue sky was almost blinding — and something deep in my chest wouldn't settle.</p>
+  </section>
+
+  <!-- Chapter Four -->
+  <section class="chapter" id="en-ch4">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter Four</div>
+      <h2>The Night of the School Trip</h2>
+      <div class="pov">Sawa Sakuraba</div>
+    </div>
+
+    <p>On our school trip, the town turned amber under the paper lanterns as evening fell.</p>
+    <p>Free time on the trip. Today I wear neither apron nor headdress. Just a student, walking a little behind Master Shuhei. It feels strangely new, and just a little ticklish.</p>
+    <p>"Sawa, it's dangerous to walk so close to the edge."</p>
+    <p>"Yes. ...Um, Master Shuhei — I thought I might buy this teacup as a souvenir—"</p>
+    <p>Just as I lifted the indigo teacup to show him, someone brushed past me, my hand slipped, and the cup went flying—</p>
+    <p>"Ah—"</p>
+    <p>A hand shot out and caught it. Safe, there in Master Shuhei's palm.</p>
+    <p>"Are you hurt?"</p>
+    <p>Not the cup, not the souvenir. The first thing Master Shuhei asks is always, without fail, about me.</p>
+    <p>"...I'm all right. Clumsy as ever — I'm sorry."</p>
+    <p>"Don't be. As long as you're fine."</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p>That night, we sat side by side on the inn's veranda. Beyond the garden, the insects were singing.</p>
+    <p>"Hey, Sawa."</p>
+    <p>"Yes?"</p>
+    <p>"You without the maid outfit... it's not bad either."</p>
+    <p>His voice was gruff, but I dropped my gaze. The lantern light was surely giving away how red I'd gone, all the way to my ears.</p>
+    <p>"...Thank you. I'm still only half a maid-in-training. But being here beside you as plain Sawa Sakuraba — truthfully, I treasure this time more than anything."</p>
+    <p>The moment the words were out I flushed, and folded my hands in my lap.</p>
+    <p>Master Shuhei started to say something — and then swallowed it. Instead he turned to face the garden, a little brusquely, and murmured:</p>
+    <p>"...No. It's nothing."</p>
+    <p>What his profile had been about to say, I couldn't tell. Or perhaps I only pretended not to.</p>
+    <p>The promise made when we were small is here, surely. But a promise and love are not the same thing. I felt as if the answer to that difference lay somewhere in the words Master Shuhei swallowed — and so I simply listened to the insects.</p>
+    <p>Will the day ever come when I hear the rest? For now, I'll keep it quietly in my heart.</p>
+  </section>
+
+  <!-- Chapter Five -->
+  <section class="chapter" id="en-ch5">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter Five</div>
+      <h2>It's Not Like I Did It for You or Anything</h2>
+      <div class="pov">Kotone Shiraishi</div>
+    </div>
+
+    <p>I hate the hallways during culture festival prep.</p>
+    <p>Cardboard everywhere, paint everywhere, everybody shrieking with excitement. I'd been put on supply duty for my first-year class, and I was hauling an armful of lumber down the corridor.</p>
+    <p>"Wah—"</p>
+    <p>My foot slipped. The world tilted. The lumber went flying. Ugh, again. I am such a klutz, I swear.</p>
+    <p>I braced myself for the floor — and someone caught my arm instead.</p>
+    <p>"Careful."</p>
+    <p>When I looked up, every last piece of lumber was stacked in his arms, and I was somehow standing safely beside him.</p>
+    <p>Yoshihara-senpai. The second-year.</p>
+    <p>"I— it's not like I asked you to save me or anything! Hey, don't just grab people, sen— senpai!"</p>
+    <p>My mouth moved on its own. People always tell me I can't be honest to save my life. I know. I know, okay? I just can't stop it.</p>
+    <p>"Okay," he said.</p>
+    <p>He didn't even get annoyed. He just adjusted his grip on the lumber.</p>
+    <p>"Which classroom?"</p>
+    <p>"...1-3."</p>
+    <p>"Then I'll carry half."</p>
+    <p>That was it. No questions. No holding it over me. I could be as prickly as I wanted, and it slid right off him like rain.</p>
+    <p>What is that. So unfair.</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p>"You're Sakuraba-senpai's fiancé, right?" I asked as we walked. The evening sun came slanting through the corridor windows.</p>
+    <p>"...You're well-informed."</p>
+    <p>"The whole school knows, duh. The rich young master and his childhood-friend maid. What is this, a shoujo manga?"</p>
+    <p>"Give me a break."</p>
+    <p>The tips of his ears went a little red. Ha, cute. — Wait, no. Not cute. Shut up, me.</p>
+    <p>"So do you love her? Sakuraba-senpai, I mean."</p>
+    <p>The second the question left my mouth, I realized my heart was pounding stupidly loud. Why am I even asking? The answer's obvious anyway.</p>
+    <p>He was quiet for a while. A long while.</p>
+    <p>"...I don't know."</p>
+    <p>"Huh?!"</p>
+    <p>"I know she matters to me. But I can't tell if that's because of a promise somebody else made for us, or because of what I actually feel. And until I can tell the difference, saying 'I love you' would be an insult to her."</p>
+    <p>— I stopped dead in the middle of the hallway.</p>
+    <p>What is that. That's way too clumsy. That's so serious it's actually stupid.</p>
+    <p>"...Have you told her that? Sakuraba-senpai?"</p>
+    <p>"Obviously not."</p>
+    <p>"Then tell her!"</p>
+    <p>The words came out loud enough to echo down the corridor. He stared at me, startled.</p>
+    <p>"...I-it's not like I'm saying it for your sake or anything! It just — it makes me mad, okay?! Watching someone that nice just wait and wait!"</p>
+    <p>I hoisted the lumber and marched ahead of him. My face was burning. No way was I letting him see it.</p>
+    <p>Behind me, his voice:</p>
+    <p>"Shiraishi."</p>
+    <p>"What."</p>
+    <p>"Thanks."</p>
+    <p>"...!"</p>
+    <p>I almost stopped walking. Almost.</p>
+    <p>— Hmph. As if that would make me happy.</p>
+    <p>...I wish I could have actually thought that. Instead of: he was really watching me. Instead of: being next to this person is kind of... calming, somehow.</p>
+    <p>Unfair. This guy is so, so unfair.</p>
+    <p>I lose. I lost ages ago.</p>
+  </section>
+
+  <!-- Chapter Six -->
+  <section class="chapter" id="en-ch6">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter Six</div>
+      <h2>The Quietest Place at the Festival</h2>
+      <div class="pov">Shuhei Yoshihara</div>
+    </div>
+
+    <p>The day of the culture festival. The whole school was a carnival, and I was, as always, no good at standing in the middle of one.</p>
+    <p>The landing on the stairway to the roof. The one quiet spot in the building — my usual refuge.</p>
+    <p>"Found you."</p>
+    <p>The first to arrive was Asahina-senpai, carrying two paper cups.</p>
+    <p>"Here — tea. From the third-years' café. ...Crowds aren't your thing, right?"</p>
+    <p>"How did you know?"</p>
+    <p>"I can tell just by looking."</p>
+    <p>She sat down beside me and took a sip. For a while, neither of us spoke. Somewhere below, the brass band drifted up through the floors.</p>
+    <p>"Yoshihara-kun."</p>
+    <p>"Yes?"</p>
+    <p>"Sawa is a lot stronger than you think she is, you know."</p>
+    <p>She said it facing forward, not looking at me. Her profile seemed, just faintly, lonely.</p>
+    <p>"She talks to me about you every day. She trusts you enough to wait as long as it takes. ...So don't make her wait too long, okay?"</p>
+    <p>"Senpai—"</p>
+    <p>"You know, I—"</p>
+    <p>She started to say something, and swallowed it. Then she folded it away behind her usual gentle smile.</p>
+    <p>"...I'm Sawa's best friend. So my job is to push you forward. That's all."</p>
+    <p>What that smile was hiding, I couldn't tell. Maybe I chose not to tell.</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p>The one who came pounding up the stairs as senpai left was Shiraishi.</p>
+    <p>"Senpai! There you are! ...Here. Take it."</p>
+    <p>She shoved a container at me. Omurice.</p>
+    <p>"It's leftovers from my class's café, okay?! It's not like I brought it here specially for you!"</p>
+    <p>"...If it's leftovers, why is it plated this carefully?"</p>
+    <p>"Sh-shut up!"</p>
+    <p>Face bright red, she leaned back against the stair rail. Then she muttered, almost to herself:</p>
+    <p>"...Sakuraba-senpai's here, you know. In the courtyard. Looking for you."</p>
+    <p>"Sawa is?"</p>
+    <p>"She's in uniform today. Not the maid outfit."</p>
+    <p>Shiraishi kept her face turned away as she went on.</p>
+    <p>"And like... I kind of got it, watching her. Today of all days, she doesn't want to be 'the maid.' She just wants to walk next to you."</p>
+    <p>"......"</p>
+    <p>"Aren't you going?"</p>
+    <p>For the first time, she looked straight at me. Her emerald eyes were the slightest bit wet.</p>
+    <p>"Because if you're not going, then I—"</p>
+    <p>She never finished the sentence. Instead she slammed her palm into my back, hard.</p>
+    <p>"Just go already, you idiot-senpai!"</p>
+    <p>I ran.</p>
+    <p>The heat of her hand stayed on my back the whole way down.</p>
+  </section>
+
+  <!-- Chapter Seven -->
+  <section class="chapter" id="en-ch7">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter Seven</div>
+      <h2>The Shape of a Promise</h2>
+      <div class="pov">Shuhei Yoshihara</div>
+    </div>
+
+    <p>The cherry tree in the courtyard bears no blossoms in autumn, of course. But Sawa was standing beneath it all the same.</p>
+    <p>Sawa in a school uniform looked almost like a stranger. No apron. No headdress. Just an eighteen-year-old girl.</p>
+    <p>"Master Shuhei!"</p>
+    <p>Her face lit up the moment she found me.</p>
+    <p>"I was looking everywhere for you. There were so many people, and I got lost... and, um, I tried to buy takoyaki from a stall, but I dropped my wallet, and when I tried to thank the person who picked it up, they tripped and fell too, and..."</p>
+    <p>"You never change."</p>
+    <p>"...I'm sorry. I still have a long way to go, don't I?"</p>
+    <p>Her shoulders drooped. I caught my breath — and then I finally said the thing I had never been able to say.</p>
+    <p>"Sawa. I've been thinking about something. For a long time."</p>
+    <p>"Yes?"</p>
+    <p>"I kept wondering if the reason you matter to me is just... the promise our parents made. Because if that's all it is, it'd be an insult to you. So I thought I had no right to say I love you."</p>
+    <p>Her eyes went wide. The autumn wind lifted her long hair.</p>
+    <p>"But a minute ago, I figured it out."</p>
+    <p>"...Figured out — what?"</p>
+    <p>"The second I heard you'd come in your uniform, I was already running. The promise never even crossed my mind. Not for one second."</p>
+    <p>Spoken aloud, it turned out to be the simplest thing in the world.</p>
+    <p>"Not Sawa the maid. Not Sawa the betrothed. The moment I thought plain old Sawa Sakuraba had come to see me — I was running."</p>
+    <p>For a long moment, she said nothing.</p>
+    <p>Then she covered her face with both hands. Between her fingers, I could see she'd gone red to the tips of her ears.</p>
+    <p>"...That's not fair."</p>
+    <p>"Huh?"</p>
+    <p>"I spent three whole days agonizing over what to wear today. I redid my hair three times. And I told myself that even if you never noticed, that would be all right... "</p>
+    <p>When she lifted her face, she looked ready to cry — and she was smiling anyway.</p>
+    <p>"If you say things like that, then I... I can't..."</p>
+    <p>"Sawa."</p>
+    <p>I called her name. No "Master," no "milady" — nothing but her name.</p>
+    <p>"Not because of the promise. Because I want to choose you myself. ...Will you give me time?"</p>
+    <p>Slowly, deeply, Sawa nodded.</p>
+    <p>"Yes. Take years, if you need them."</p>
+    <p>And then — with that smile, the one I have never once beaten — she added:</p>
+    <p>"After all... no one in this world thinks of you more than I do, Master Shuhei."</p>
+
+    <div class="break">✿ ✿ ✿</div>
+
+    <p>From a window overlooking the courtyard, Asahina-senpai was watching us. When our eyes met, she gave a small wave — and quietly drew the curtain closed.</p>
+    <p>In the corner of the courtyard, Shiraishi was yelling "Ugh!! I can't watch this!!" while smacking her own cheeks with both hands, for some reason.</p>
+    <p>Beneath the flowerless cherry tree, the two of us stood side by side.</p>
+    <p>Next spring, this tree will turn cherry-blossom pink again.</p>
+    <p>Where the two of us will be by then, I don't know yet. Where all three of their hearts will go — I don't know that either.</p>
+    <p>But one thing is certain.</p>
+    <p>The promise made for us when we were children changed its shape today — just a little — into something that looks like love.</p>
+
+    <div class="end">The End</div>
+  </section>
+
+  <div class="more">
+    <a href="#demo">✿ Let the AI write what comes next (writing demo)</a>
+  </div>
+
+</main>
+</div><!-- /.lang-en -->
+
+<script>
+  (function(){
+    var body = document.body;
+    var buttons = document.querySelectorAll('.lang-switch button');
+    var STORAGE_KEY = 'sakurairo-lang';
+
+    function setLang(lang){
+      if(lang !== 'ja' && lang !== 'en') lang = 'ja';
+      body.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+      document.title = (lang === 'en')
+        ? 'The Cherry-Blossom Maid Was My Childhood Friend — and My Betrothed.'
+        : '桜色メイドは、幼馴染で許嫁でした。';
+      buttons.forEach(function(btn){
+        btn.classList.toggle('is-active', btn.getAttribute('data-set-lang') === lang);
+      });
+      try{ localStorage.setItem(STORAGE_KEY, lang); }catch(e){}
+    }
+
+    // 初期化：保存された選択があれば復元、なければ日本語版を既定にする
+    var saved = 'ja';
+    try{
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if(stored === 'ja' || stored === 'en') saved = stored;
+    }catch(e){}
+    setLang(saved);
+
+    // 表紙＋各章の区切り要素を、その言語の並び順で取得する
+    function getSections(lang){
+      var container = document.querySelector('.lang-' + lang);
+      return container.querySelectorAll('.cover, .chapter');
+    }
+    // スクロールに依存しないドキュメント先頭からの絶対 top を求める
+    function docTop(el){
+      var t = 0;
+      while(el){ t += el.offsetTop; el = el.offsetParent; }
+      return t;
+    }
+
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var to = btn.getAttribute('data-set-lang');
+        var from = body.getAttribute('data-lang');
+        if(to === from) return;
+
+        // 切替前：現在表示中の言語で「今どの章のどのあたりを見ているか」を記録
+        var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+        var src = getSections(from);
+        var idx = 0, ratio = 0;
+        for(var i = 0; i < src.length; i++){
+          var top = docTop(src[i]);
+          if(top <= y + 2){
+            idx = i;
+            var h = src[i].offsetHeight || 1;
+            ratio = Math.min(Math.max((y - top) / h, 0), 1);
+          } else {
+            break;
+          }
+        }
+
+        // 言語を切り替える（表示が入れ替わってレイアウトが変わる）
+        setLang(to);
+
+        // 切替後：対応する同じ章の同じ相対位置へスクロールを合わせる
+        var dst = getSections(to);
+        var target = dst[Math.min(idx, dst.length - 1)];
+        if(target){
+          var newY = docTop(target) + ratio * (target.offsetHeight || 0);
+          window.scrollTo(0, Math.round(newY));
+        }
+      });
+    });
+
+    // 上へ戻るボタン：一定量スクロールしたら表示
+    var toTop = document.querySelector('.to-top');
+    if(toTop){
+      var onScroll = function(){
+        var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+        toTop.classList.toggle('is-visible', y > window.innerHeight * 0.6);
+      };
+      window.addEventListener('scroll', onScroll, { passive:true });
+      onScroll();
+      toTop.addEventListener('click', function(){
+        window.scrollTo({ top:0, behavior:'smooth' });
+      });
+    }
+  })();
+</script>
+
+
+<style>
+  #demo{ max-width:760px; margin:0 auto; padding:14vh 7vw 10vh; font-family:var(--sans); line-height:1.9; border-top:1px solid var(--line); }
+  #demo .demo-head{ text-align:center; margin-bottom:3rem; }
+  #demo #kicker{ font-size:.7rem; letter-spacing:.4em; text-indent:.4em; color:var(--sakura); margin-bottom:1.2rem; }
+  body[data-lang="en"] #demo #kicker{ text-transform:uppercase; }
+  #demo h1{ font-family:var(--serif-ja); font-weight:800; font-size:clamp(1.4rem,4vw,2rem); letter-spacing:.06em; line-height:1.6; color:var(--sumi); }
+  body[data-lang="en"] #demo h1{ font-family:var(--serif-en); font-weight:700; letter-spacing:.02em; }
+  #demo #lead{ font-size:.85rem; color:var(--sumi-soft); margin-top:1.1rem; line-height:1.9; }
+  #demo .card{ background:var(--hakua); border:1px solid var(--line); border-radius:16px; padding:1.8rem 1.7rem; margin-bottom:1.6rem; }
+  #demo .card h2{ font-family:var(--serif-ja); font-weight:600; font-size:1.05rem; letter-spacing:.06em; margin-bottom:1.1rem; display:flex; align-items:center; gap:.6rem; color:var(--sumi); }
+  body[data-lang="en"] #demo .card h2{ font-family:var(--serif-en); }
+  #demo .card h2 .step{ font-family:var(--sans); font-size:.62rem; letter-spacing:.16em; color:var(--hakua); background:var(--sakura); border-radius:999px; padding:.28rem .7rem .24rem; }
+  #demo label{ display:block; font-size:.78rem; color:var(--sumi-soft); margin-bottom:.5rem; letter-spacing:.04em; }
+  #demo select{ width:100%; font-family:var(--sans); font-size:.92rem; color:var(--sumi); background:var(--washi); border:1px solid var(--line); border-radius:10px; padding:.7rem .85rem; }
+  #demo select:focus{ outline:none; border-color:var(--sakura); }
+  #demo .meta{ font-size:.76rem; color:var(--sumi-soft); margin-top:.9rem; letter-spacing:.03em; }
+  #demo .meta b{ color:var(--sumi); }
+  #demo .btn{ font-family:var(--sans); font-size:.95rem; letter-spacing:.14em; border:none; border-radius:10px; cursor:pointer; width:100%; padding:.95rem; margin-top:1.2rem; background:var(--sakura); color:var(--hakua); transition:background .2s ease, opacity .2s ease; }
+  #demo .btn:hover{ background:#c76d8b; }
+  #demo .btn:disabled{ opacity:.45; cursor:not-allowed; }
+  #demo .status{ font-size:.78rem; color:var(--sumi-soft); margin-top:1rem; min-height:1.2em; letter-spacing:.03em; }
+  #demo .status.ok{ color:#c76d8b; }
+  #demo .status.error{ color:#b3455e; }
+  #demo .output-card{ display:none; }
+  #demo .output-card.show{ display:block; }
+  #demo #preview{ padding:.4rem 0 0; }
+  #demo #preview:empty::before{ content:"ここに生成された本文が流れます…"; color:var(--sumi-soft); font-size:.85rem; font-family:var(--sans); }
+  body[data-lang="en"] #demo #preview:empty::before{ content:"The generated text will appear here…"; }
+  #demo #preview .chapter-head{ text-align:center; margin-bottom:2.4rem; }
+  #demo #preview .chapter-num{ display:inline-block; font-family:var(--sans); font-size:.62rem; letter-spacing:.4em; text-indent:.4em; color:var(--sakura); border:1px solid var(--sakura-pale); border-radius:999px; padding:.4rem 1rem .36rem; margin-bottom:1.2rem; }
+  body[data-lang="en"] #demo #preview .chapter-num{ text-transform:uppercase; }
+  #demo #preview .chapter-head h2{ font-family:var(--serif-ja); font-weight:600; font-size:1.35rem; letter-spacing:.1em; line-height:1.7; color:var(--sumi); }
+  body[data-lang="en"] #demo #preview .chapter-head h2{ font-family:var(--serif-en); letter-spacing:.03em; }
+  #demo #preview .pov{ font-family:var(--sans); font-size:.68rem; letter-spacing:.24em; color:var(--sumi-soft); margin-top:.8rem; opacity:.8; }
+  body[data-lang="en"] #demo #preview .pov{ text-transform:uppercase; }
+  #demo #preview p{ font-family:var(--serif-ja); font-size:1rem; line-height:2.05; text-indent:1em; margin-bottom:1.5rem; text-align:justify; color:var(--sumi); }
+  body[data-lang="en"] #demo #preview p{ font-family:var(--serif-en); font-size:1.12rem; text-indent:0; text-align:left; line-height:1.85; }
+  #demo #preview .break{ text-align:center; color:var(--sakura-pale); letter-spacing:1.2em; text-indent:1.2em; margin:2.6rem 0; font-size:.8rem; }
+  #demo .cursor{ display:inline-block; color:var(--sakura); animation:demo-blink 1s steps(2) infinite; }
+  @keyframes demo-blink{ 50%{ opacity:0; } }
+  #demo .note{ font-size:.72rem; color:var(--sumi-soft); line-height:1.85; background:var(--washi-2); border-radius:12px; padding:1rem 1.1rem; margin-top:1.4rem; }
+  #demo .note b{ color:var(--sumi); }
+  @media print{ #demo{ display:none !important; } }
+</style>
+
+<section id="demo">
+  <div class="demo-head">
+    <div id="kicker">複数AI連携デモ ／ 後日談の自動生成</div>
+    <h1 id="h1">桜色メイドの、<br>その後をAIが書く</h1>
+    <p id="lead">キャラクター設定と口調ルールをもとに、AIが本編と同じ文体で書き下ろした<b>後日談（本編の告白のあとの物語）</b>を再生します。<br>APIキーや課金は不要です。</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="step">STEP 1</span> <span id="step1txt">生成する後日談を選ぶ</span></h2>
+    <label for="chapter" id="selLabel">エピソードと視点</label>
+    <select id="chapter">
+      <option value="valentine">バレンタインの攻防（白石 琴音 視点）</option>
+      <option value="graduation">卒業する君へ（朝比奈 美月 視点）</option>
+      <option value="spring">桜が咲く頃（桜庭 紗和 視点）</option>
+    </select>
+    <p class="meta" id="meta"></p>
+    <button class="btn" id="generate" type="button"><span id="genTxt">✿ この後日談を生成する</span></button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="card output-card" id="outputCard">
+    <h2><span class="step">STEP 2</span> <span id="step2txt">生成結果</span></h2>
+    <div id="preview"></div>
+  </div>
+
+  <div class="note" id="note"></div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+
+  var $ = function(id){ return document.getElementById(id); };
+  var body = document.body;
+
+  // ---- UI文言（日英） ----
+  var UI = {
+    ja: {
+      navHome: "📖 本編を読む（日英統合版）",
+      kicker: "複数AI連携デモ ／ 後日談の自動生成",
+      h1: "桜色メイドの、<br>その後をAIが書く",
+      lead: "キャラクター設定と口調ルールをもとに、AIが本編と同じ文体で書き下ろした<b>後日談（本編の告白のあとの物語）</b>を再生します。<br>APIキーや課金は不要です。",
+      step1: "生成する後日談を選ぶ",
+      selLabel: "エピソードと視点",
+      opt: {
+        valentine: "バレンタインの攻防（白石 琴音 視点）",
+        graduation: "卒業する君へ（朝比奈 美月 視点）",
+        spring: "桜が咲く頃（桜庭 紗和 視点）"
+      },
+      genBtn: "✿ この後日談を生成する",
+      step2: "生成結果",
+      metaLabel: "あらすじ:",
+      writing: "AIが執筆中です…",
+      done: "生成が完了しました。",
+      note: "<b>このデモについて:</b> 表示される後日談は、キャラクター設定・口調ルール（美月「〜だよ」／琴音「先輩」／紗和「修平様」／修平「失敗を聞くと先に心配する」軸）に沿って<b>AIが事前に書き下ろした本文</b>です。本編とは別の「もしも」の続きで、オフラインで動作し、外部通信・APIキー・課金は一切ありません。",
+      foot: "『桜色メイドは、幼馴染で許嫁でした。』 本編へ",
+      title: "後日談を生成 ― AI執筆デモ｜桜色メイド"
+    },
+    en: {
+      navHome: "📖 Read the story (bilingual)",
+      kicker: "Multi-AI demo / Generating an epilogue",
+      h1: "An AI writes<br>what came after",
+      lead: "Based on the character profiles and voice rules, an AI plays back an <b>epilogue (a story set after the confession in the main novel)</b>, written in the very same style.<br>No API key or billing required.",
+      step1: "Choose an epilogue to generate",
+      selLabel: "Episode &amp; viewpoint",
+      opt: {
+        valentine: "A Valentine's Standoff (Kotone Shiraishi)",
+        graduation: "For You, Graduating (Mizuki Asahina)",
+        spring: "When the Cherry Blossoms Bloom (Sawa Sakuraba)"
+      },
+      genBtn: "✿ Generate this epilogue",
+      step2: "Result",
+      metaLabel: "Summary:",
+      writing: "The AI is writing…",
+      done: "Generation complete.",
+      note: "<b>About this demo:</b> Each epilogue shown is text an AI wrote in advance, following the character profiles and voice rules (Mizuki's soft everyday speech, Kotone's \"senpai,\" Sawa's \"Master Shuhei,\" and Shuhei's habit of worrying about others before their failures). These are \"what-if\" continuations, separate from the main story; everything runs offline, with no external communication, API key, or billing.",
+      foot: "To the story: “The Cherry-Blossom Maid Was My Childhood Friend — and My Betrothed.”",
+      title: "Epilogues — AI Writing Demo | The Cherry-Blossom Maid"
+    }
+  };
+
+  // ---- AIが事前生成した後日談（日英・口調ルール厳守／本編の告白のあと） ----
+  var CHAPTERS = {
+    valentine: {
+      meta: {
+        ja: "二月十四日。ツンデレを拗らせながらも、手作りチョコを渡そうとする琴音。",
+        en: "February 14th. Tangled up in her own tsundere pride, Kotone tries to hand over her handmade chocolate."
+      },
+      html: {
+        ja:
+'<section class="chapter">\n' +
+'  <div class="chapter-head">\n' +
+'    <div class="chapter-num">後 日 談</div>\n' +
+'    <h2>バレンタインの攻防</h2>\n' +
+'    <div class="pov">白石 琴音</div>\n' +
+'  </div>\n' +
+'  <p>二月十四日。あたしは朝から、鞄の中の小さな包みを、何度も何度も確かめていた。</p>\n' +
+'  <p>別に、義理だから。先輩に渡すのだって、ただの成り行きで、深い意味なんてこれっぽっちもないんだから。……そう自分に言い聞かせるほど、心臓がうるさくなるのはどうしてなんだろう。</p>\n' +
+'  <p>放課後の下駄箱で、あたしは修平先輩を待ち伏せ――じゃなくて、たまたま、居合わせた。</p>\n' +
+'  <p>「白石? どうした、そんなとこで固まって」</p>\n' +
+'  <p>「なっ、固まってなんかないし!」</p>\n' +
+'  <p>「……顔、赤いぞ。熱でもあるのか」</p>\n' +
+'  <p>渡すより先に、この人はまたあたしの心配をする。チョコのことも、告白のことも、まだ何も知らないくせに。</p>\n' +
+'  <div class="break">✿ ✿ ✿</div>\n' +
+'  <p>「ちがっ……! これ、あげる! 手作りだけど、形、失敗して変だし、味だって保証しないから!」</p>\n' +
+'  <p>押しつけるように差し出した包みを、先輩はきょとんとした顔で受け取った。それから、ふっと表情をやわらげる。</p>\n' +
+'  <p>「ありがとな。……作るの、大変だっただろ。指、切ってないか」</p>\n' +
+'  <p>ほら、やっぱり。溶かしたチョコの味より先に、あたしの指の心配だ。</p>\n' +
+'  <p>「……ちょっとだけ。でも、平気」</p>\n' +
+'  <p>「無理すんな」</p>\n' +
+'  <p>ふんっ、そんなに優しくされたって、べつに嬉しくなんて――なんて、思えたらよかったのに。この人はいつだって、あたしの失敗より先に、あたしを心配する。ずるい。ほんと、ずるい。</p>\n' +
+'  <p>桜が咲くには、まだ少し早い二月。冷たい風の下で、あたしは今日だけは、負けていてもいいかなと思った。</p>\n' +
+'</section>',
+        en:
+'<section class="chapter">\n' +
+'  <div class="chapter-head">\n' +
+'    <div class="chapter-num">Epilogue</div>\n' +
+'    <h2>A Valentine\'s Standoff</h2>\n' +
+'    <div class="pov">Kotone Shiraishi</div>\n' +
+'  </div>\n' +
+'  <p>February the fourteenth. Since morning I\'d checked the little package in my bag over and over, again and again.</p>\n' +
+'  <p>It\'s just an obligation chocolate. Handing it to senpai is only how things worked out — there isn\'t one bit of deeper meaning to it. ...And yet the more I told myself that, the louder my heart got. Why is that?</p>\n' +
+'  <p>After school, by the shoe lockers, I lay in wait for Yoshihara-senpai — no, I just happened to be there.</p>\n' +
+'  <p>"Shiraishi? What\'s wrong, freezing up over there."</p>\n' +
+'  <p>"I— I\'m not freezing up!"</p>\n' +
+'  <p>"...Your face is red. You running a fever?"</p>\n' +
+'  <p>Before I can even hand it over, this person is worrying about me again. Even though he knows nothing yet — not about the chocolate, not about any of it.</p>\n' +
+'  <div class="break">✿ ✿ ✿</div>\n' +
+'  <p>"That\'s not— ! Here, take it! It\'s handmade, but the shape came out weird and I\'m not guaranteeing the taste, okay?!"</p>\n' +
+'  <p>He took the package I shoved at him, blinking. Then his face softened.</p>\n' +
+'  <p>"Thanks. ...That must\'ve been a lot of work. You didn\'t cut your finger, did you."</p>\n' +
+'  <p>See — there it is. Before the taste of the melted chocolate, it\'s my finger he worries about.</p>\n' +
+'  <p>"...Just a little. But I\'m fine."</p>\n' +
+'  <p>"Don\'t push yourself."</p>\n' +
+'  <p>Hmph — as if being treated that gently makes me happy or anything. I wish I could have actually thought that. This person always, always worries about me before my failures. Unfair. Really, so unfair.</p>\n' +
+'  <p>February, still a little too early for the blossoms. Under the cold wind, just for today, I thought maybe it was all right to have lost.</p>\n' +
+'</section>'
+      }
+    },
+
+    graduation: {
+      meta: {
+        ja: "卒業式。切なさを抱えたまま、笑顔で二人の背中を送り出す美月。",
+        en: "The graduation ceremony. Holding her wistfulness close, Mizuki sees the two of them off with a smile."
+      },
+      html: {
+        ja:
+'<section class="chapter">\n' +
+'  <div class="chapter-head">\n' +
+'    <div class="chapter-num">後 日 談</div>\n' +
+'    <h2>卒業する君へ</h2>\n' +
+'    <div class="pov">朝比奈 美月</div>\n' +
+'  </div>\n' +
+'  <p>卒業式の日、体育館は少し寒くて、それなのに胸のあたりだけが、ずっとあたたかかった。</p>\n' +
+'  <p>わたしはもう、この学校の生徒じゃなくなる。図書室の西日も、あの静けさも、ページをめくる音だけが響くあの時間も、今日でお別れなんだ。</p>\n' +
+'  <p>式が終わって中庭に出ると、紗和と琴音ちゃんが待っていてくれた。少し離れたところに、吉原くんも。</p>\n' +
+'  <p>「美月ちゃん、ご卒業、おめでとうございます」</p>\n' +
+'  <p>紗和はもう、泣きそうな顔をしている。つられて、わたしの手から卒業証書の筒が滑り落ちそうになった。</p>\n' +
+'  <p>「先輩、それ、大事なものでしょう。……落とさないで」</p>\n' +
+'  <p>とっさに支えてくれたのは、吉原くんだった。証書のことより、それを抱えるわたしの三年間ごと、そっと気遣うみたいに。</p>\n' +
+'  <p>ああ、この人の、こういうところが好きだったんだ。――過去形にできるくらいには、わたしはちゃんと、前を向けている。</p>\n' +
+'  <div class="break">✿ ✿ ✿</div>\n' +
+'  <p>「吉原くん。紗和を、幸せにしてあげてね」</p>\n' +
+'  <p>「……はい。必ず」</p>\n' +
+'  <p>まっすぐな返事に、わたしは声を出して笑った。うん、その調子。あなたはそれでいい。</p>\n' +
+'  <p>「わたしね、この学校でいちばんの宝物は、二人に会えたことだよ。ほんとうに」</p>\n' +
+'  <p>星形のヘアピンにそっと触れて、わたしは春のはじまりの空を見上げた。掠れそうな声を、笑顔でぜんぶ包んでしまう。それが、わたしの役目だから。</p>\n' +
+'  <p>「小さな幸せを見つけて、自分らしく笑顔でいてね。――わたしも、ちゃんとそうするから」</p>\n' +
+'  <p>切ないのに、不思議と涙は出なかった。卒業は、終わりじゃない。わたしの恋を、いちばんきれいな形でしまっておける、その日なんだ。</p>\n' +
+'</section>',
+        en:
+'<section class="chapter">\n' +
+'  <div class="chapter-head">\n' +
+'    <div class="chapter-num">Epilogue</div>\n' +
+'    <h2>For You, Graduating</h2>\n' +
+'    <div class="pov">Mizuki Asahina</div>\n' +
+'  </div>\n' +
+'  <p>On the day of the graduation ceremony, the gym was a little cold, and yet the warmth lingered, only in my chest.</p>\n' +
+'  <p>I won\'t be a student here anymore. The westering sun in the library, that quiet, the hours where only the sound of a turning page echoed — today I say goodbye to all of it.</p>\n' +
+'  <p>When the ceremony ended and I stepped into the courtyard, Sawa and Kotone-chan were waiting for me. A little way off, Yoshihara-kun too.</p>\n' +
+'  <p>"Mizuki, congratulations on your graduation."</p>\n' +
+'  <p>Sawa already has that about-to-cry face. Caught by it, the tube holding my diploma nearly slipped from my hand.</p>\n' +
+'  <p>"Senpai, that\'s something precious, isn\'t it. ...Don\'t drop it."</p>\n' +
+'  <p>The one who caught it in time was Yoshihara-kun. As if, more than the diploma, he were gently minding the whole three years I was holding along with it.</p>\n' +
+'  <p>Ah — it was this, this part of him, that I loved. I\'ve come far enough that I can put it in the past tense now.</p>\n' +
+'  <div class="break">✿ ✿ ✿</div>\n' +
+'  <p>"Yoshihara-kun. Make Sawa happy, okay?"</p>\n' +
+'  <p>"...Yes. Without fail."</p>\n' +
+'  <p>At the straight answer, I laughed out loud. Yes — that\'s the way. That\'s exactly how you should be.</p>\n' +
+'  <p>"You know, the greatest treasure I found at this school was getting to meet the two of you. Truly."</p>\n' +
+'  <p>Touching the star-shaped pin in my hair, I looked up at the sky at the start of spring. Every almost-cracking word, I wrap up inside a smile. Because that\'s my role.</p>\n' +
+'  <p>"Find the little joys, and keep smiling in your own way. ...I\'ll do the same, I promise."</p>\n' +
+'  <p>It was bittersweet, and yet, strangely, no tears came. Graduation isn\'t an ending. It\'s the day I get to fold my love away in its most beautiful shape.</p>\n' +
+'</section>'
+      }
+    },
+
+    spring: {
+      meta: {
+        ja: "告白から一年。中庭の桜が咲くころ、約束はたしかに恋のかたちへ。",
+        en: "A year after the confession. As the courtyard cherry tree blooms, the promise truly takes the shape of love."
+      },
+      html: {
+        ja:
+'<section class="chapter">\n' +
+'  <div class="chapter-head">\n' +
+'    <div class="chapter-num">後 日 談</div>\n' +
+'    <h2>桜が咲く頃</h2>\n' +
+'    <div class="pov">桜庭 紗和</div>\n' +
+'  </div>\n' +
+'  <p>春が来て、中庭の桜が、今年もちゃんと花をつけました。</p>\n' +
+'  <p>あの日、花のなかった木の下で交わした約束から、季節がひとつ、静かに巡ったのです。</p>\n' +
+'  <p>わたしは今日も、「修平様、おはようございます。今日も素敵な一日になりますように」で一日を始めます。メイド見習いは相変わらず半人前で、今朝も卵焼きを二回、焦がしてしまいました。</p>\n' +
+'  <p>「怪我は」</p>\n' +
+'  <p>「……ありません。もう、修平様ったら、いつもそればかり」</p>\n' +
+'  <p>くすくす笑いながら、それでもわたしは知っています。この人のその一言に、わたしはいつも救われてきたのだと。</p>\n' +
+'  <p>変わらない朝。けれど、ひとつだけ、たしかに変わったことがあります。</p>\n' +
+'  <div class="break">✿ ✿ ✿</div>\n' +
+'  <p>満開の桜の下で、修平様がわたしの名前を呼びます。「様」も「お嬢様」も何もない、ただの「紗和」と。</p>\n' +
+'  <p>「約束は、ちゃんと恋になったよ。……お前のおかげだ」</p>\n' +
+'  <p>わたしは、こらえきれずに、ほろりと涙をこぼしてしまいました。泣いているのに、顔は笑ってしまうのです。</p>\n' +
+'  <p>「わたし、誰よりも修平様のことを想っています。……あの日も、今日も、これからも、ずっと」</p>\n' +
+'  <p>桜の花びらが、ひとひら、ふたひら、わたしたちの肩に舞い落ちます。</p>\n' +
+'  <p>幼い頃に大人たちが結んだ約束は、今、確かに恋のかたちになりました。桜色に染まったこの季節の、まんなかで。</p>\n' +
+'</section>',
+        en:
+'<section class="chapter">\n' +
+'  <div class="chapter-head">\n' +
+'    <div class="chapter-num">Epilogue</div>\n' +
+'    <h2>When the Cherry Blossoms Bloom</h2>\n' +
+'    <div class="pov">Sawa Sakuraba</div>\n' +
+'  </div>\n' +
+'  <p>Spring came, and the cherry tree in the courtyard put out its blossoms again this year, just as it should.</p>\n' +
+'  <p>From the promise we made beneath that flowerless tree, one season has quietly come around.</p>\n' +
+'  <p>Today, too, I begin the day with, "Good morning, Master Shuhei. May today be a wonderful day." The maid-in-training is as half-fledged as ever, and this morning I burned the rolled omelet twice.</p>\n' +
+'  <p>"Are you hurt?"</p>\n' +
+'  <p>"...I\'m not. Honestly, Master Shuhei — it\'s always that with you."</p>\n' +
+'  <p>Laughing softly, I know all the same: it\'s that one line of his that has saved me, every single time.</p>\n' +
+'  <p>An unchanging morning. And yet — there is one thing that has surely changed.</p>\n' +
+'  <div class="break">✿ ✿ ✿</div>\n' +
+'  <p>Beneath the cherry tree in full bloom, Master Shuhei calls my name. No "Master," no "milady" — just "Sawa."</p>\n' +
+'  <p>"The promise turned into love, in the end. ...Thanks to you."</p>\n' +
+'  <p>Unable to hold it back, I let a tear spill. Crying, and yet my face breaks into a smile.</p>\n' +
+'  <p>"I think of you more than anyone in the world. ...That day, today, and always, from here on."</p>\n' +
+'  <p>Cherry petals drift down, one, then another, onto our shoulders.</p>\n' +
+'  <p>The promise our parents made when we were small has now, truly, taken the shape of love. Right in the middle of this cherry-blossom season.</p>\n' +
+'</section>'
+      }
+    }
+  };
+
+  var statusEl = $("status");
+  function setStatus(msg, kind){ statusEl.textContent = msg; statusEl.className = "status" + (kind ? " " + kind : ""); }
+
+  function lang(){ return body.getAttribute("data-lang") === "en" ? "en" : "ja"; }
+
+  function updateMeta(){
+    var c = CHAPTERS[$("chapter").value];
+    $("meta").innerHTML = c ? "<b>" + UI[lang()].metaLabel + "</b> " + c.meta[lang()] : "";
+  }
+
+  // ---- 生成済みの後日談を、言語切替時に瞬時に再描画するための状態 ----
+  var lastKey = null;   // 直近に生成した後日談のキー
+  var genToken = 0;     // タイプ表示の実行世代（切替で無効化する）
+
+  function renderInstant(key, l){
+    var c = CHAPTERS[key];
+    if(!c) return;
+    genToken++;                 // 実行中のタイプ表示を停止させる
+    busy = false;
+    if(genBtn){ genBtn.disabled = false; }
+    var pv = $("preview");
+    pv.innerHTML = "";
+    var doc = new DOMParser().parseFromString(c.html[l], "text/html");
+    var section = doc.querySelector("section.chapter");
+    var head = section.querySelector(".chapter-head");
+    if(head) pv.appendChild(head.cloneNode(true));
+    Array.prototype.forEach.call(section.querySelectorAll("p, .break"), function(el){
+      pv.appendChild(el.cloneNode(true));
+    });
+    setStatus(UI[l].done, "ok");
+  }
+
+  // ---- 言語切替 ----
+  var buttons = document.querySelectorAll(".lang-switch button");
+
+  function setLang(l){
+    if(l !== "ja" && l !== "en") l = "ja";
+    var u = UI[l];
+    body.setAttribute("data-lang", l);
+    document.documentElement.setAttribute("lang", l);
+    
+
+    
+    $("kicker").textContent = u.kicker;
+    $("h1").innerHTML = u.h1;
+    $("lead").innerHTML = u.lead;
+    $("step1txt").textContent = u.step1;
+    $("selLabel").innerHTML = u.selLabel;
+    var opts = $("chapter").options;
+    opts[0].textContent = u.opt.valentine;
+    opts[1].textContent = u.opt.graduation;
+    opts[2].textContent = u.opt.spring;
+    $("genTxt").textContent = u.genBtn;
+    $("step2txt").textContent = u.step2;
+    $("note").innerHTML = u.note;
+    
+
+    updateMeta();
+    if(lastKey){ renderInstant(lastKey, l); }
+    buttons.forEach(function(b){ b.classList.toggle("is-active", b.getAttribute("data-set-lang") === l); });
+    try{ localStorage.setItem("sakurairo-lang", l); }catch(e){}
+  }
+
+  var saved = "ja";
+  try{
+    var stored = localStorage.getItem("sakurairo-lang");
+    if(stored === "ja" || stored === "en") saved = stored;
+  }catch(e){}
+  setLang(saved);
+
+  buttons.forEach(function(b){
+    b.addEventListener("click", function(){ setLang(b.getAttribute("data-set-lang")); });
+  });
+
+  $("chapter").addEventListener("change", updateMeta);
+
+  // ---- 生成（タイプ表示） ----
+  var outputCard = $("outputCard");
+  var previewEl = $("preview");
+  var genBtn = $("generate");
+  var busy = false;
+
+  genBtn.addEventListener("click", function(){
+    if(busy) return;
+    var c = CHAPTERS[$("chapter").value];
+    if(!c) return;
+    var l = lang();
+    lastKey = $("chapter").value;
+    var myToken = ++genToken;
+
+    busy = true;
+    genBtn.disabled = true;
+    outputCard.classList.add("show");
+    previewEl.innerHTML = "";
+    setStatus(UI[l].writing, "");
+    outputCard.scrollIntoView({ behavior:"smooth", block:"start" });
+
+    var doc = new DOMParser().parseFromString(c.html[l], "text/html");
+    var section = doc.querySelector("section.chapter");
+
+    var head = section.querySelector(".chapter-head");
+    if(head) previewEl.appendChild(head.cloneNode(true));
+
+    var blocks = Array.prototype.slice.call(section.querySelectorAll("p, .break"));
+    var bi = 0;
+
+    function finish(){
+      if(myToken !== genToken){ return; }
+      setStatus(UI[l].done, "ok");
+      busy = false;
+      genBtn.disabled = false;
+    }
+
+    function nextBlock(){
+      if(myToken !== genToken){ return; }
+      if(bi >= blocks.length){ finish(); return; }
+      var el = blocks[bi++];
+
+      if(el.classList.contains("break")){
+        previewEl.appendChild(el.cloneNode(true));
+        previewEl.scrollTop = previewEl.scrollHeight;
+        setTimeout(nextBlock, 140);
+        return;
+      }
+
+      var p = document.createElement("p");
+      previewEl.appendChild(p);
+      var cursor = document.createElement("span");
+      cursor.className = "cursor";
+      cursor.textContent = "▍";
+      p.appendChild(cursor);
+
+      var full = el.textContent;
+      var i = 0;
+      (function typeChar(){
+        if(myToken !== genToken){ return; }
+        if(i >= full.length){
+          if(cursor.parentNode) cursor.parentNode.removeChild(cursor);
+          setTimeout(nextBlock, 26);
+          return;
+        }
+        cursor.insertAdjacentText("beforebegin", full.charAt(i));
+        i++;
+        previewEl.scrollTop = previewEl.scrollHeight;
+        setTimeout(typeChar, 14);
+      })();
+    }
+
+    nextBlock();
+  });
+})();
+</script>
+</body>
+</html>
